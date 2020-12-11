@@ -1,0 +1,33 @@
+
+    ************* Date : 4 -  8 - 2020 - 12 :  7 : 59
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/forgotPwd/forgotPassword
+    Message: post forgotPassword Error *************
+    
+    ************* Date : 4 -  8 - 2020 - 12 :  8 : 34
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/forgotPwd/forgotPassword
+    Message: post forgotPassword Error *************
+    
+    ************* Date : 4 -  8 - 2020 - 12 :  34 : 48
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/forgotPwd/validateId
+    Message: post validateId Error *************
+    
+    ************* Date : 4 -  8 - 2020 - 12 :  35 : 22
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/forgotPwd/validateId
+    Message: post validateId Error *************
+    
+    ************* Date : 4 -  8 - 2020 - 12 :  35 : 43
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/forgotPwd/validateId
+    Message: post validateId Error *************
+    
+    ************* Date : 4 -  8 - 2020 - 13 :  53 : 45
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/forgotPwd/validateId
+    Message: post validateId Error *************
+    
+    ************* Date : 4 -  8 - 2020 - 19 :  9 : 43
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/forgotPwd/validateId
+    Message: post validateId Error *************
+    
+    ************* Date : 4 -  8 - 2020 - 19 :  38 : 57
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/forgotPwd/validateId
+    Message: post validateId Error *************
+    

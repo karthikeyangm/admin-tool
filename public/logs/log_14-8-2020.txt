@@ -1,0 +1,45 @@
+
+    ************* Date : 14 -  8 - 2020 - 16 :  21 : 30
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/asset/GetAllAssetCategory
+    Message: get asset cat Error *************
+    
+    ************* Date : 14 -  8 - 2020 - 16 :  29 : 58
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/getcountOfuser
+    Message: User count *************
+    
+    ************* Date : 14 -  8 - 2020 - 16 :  29 : 58
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 14 -  8 - 2020 - 16 :  33 : 57
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 14 -  8 - 2020 - 16 :  33 : 57
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 14 -  8 - 2020 - 16 :  34 : 39
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/asset/GetAllAssetCategory
+    Message: get asset cat Error *************
+    
+    ************* Date : 14 -  8 - 2020 - 16 :  35 : 31
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 14 -  8 - 2020 - 17 :  52 : 36
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/getcountOfuser
+    Message: User count *************
+    
+    ************* Date : 14 -  8 - 2020 - 18 :  20 : 33
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 14 -  8 - 2020 - 18 :  20 : 33
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 14 -  8 - 2020 - 18 :  43 : 11
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: delete:/users/deleteUser/:id
+    Message: delete Error *************
+    

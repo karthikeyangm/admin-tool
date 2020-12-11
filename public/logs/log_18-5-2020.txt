@@ -1,0 +1,705 @@
+
+    ************* Date : 18 -  5 - 2020 - 13 :  7 : 48
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 13 :  7 : 48
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 13 :  13 : 22
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 13 :  13 : 22
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 13 :  14 : 1
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 13 :  14 : 1
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 13 :  15 : 29
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 13 :  16 : 8
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 13 :  16 : 8
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 13 :  16 : 16
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 13 :  16 : 16
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 13 :  17 : 2
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  35 : 27
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  35 : 27
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  38 : 24
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  39 : 13
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  39 : 13
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  40 : 26
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  45 : 50
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  45 : 50
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  48 : 51
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  48 : 51
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  54 : 6
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  54 : 7
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  56 : 30
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  57 : 4
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  57 : 4
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  58 : 2
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  58 : 31
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 14 :  58 : 32
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 15 :  0 : 2
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 15 :  0 : 2
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 15 :  1 : 37
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 15 :  3 : 4
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 15 :  3 : 5
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 15 :  4 : 4
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 15 :  4 : 50
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 15 :  4 : 50
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 15 :  7 : 12
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 16 :  16 : 7
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 16 :  16 : 7
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 16 :  16 : 57
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 16 :  21 : 39
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 16 :  21 : 39
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  6 : 14
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  11 : 53
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  24 : 53
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  24 : 53
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  26 : 24
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  28 : 35
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  28 : 35
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  29 : 16
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  29 : 17
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  32 : 25
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  33 : 6
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  33 : 6
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  37 : 38
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  37 : 38
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  38 : 2
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  43 : 46
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  43 : 53
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  43 : 53
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  44 : 26
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  44 : 26
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  44 : 48
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  44 : 48
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  45 : 20
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  45 : 20
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  46 : 13
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  46 : 13
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  46 : 35
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  46 : 35
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  50 : 12
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 18 :  50 : 12
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  11 : 45
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  13 : 45
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  13 : 45
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  25 : 58
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  25 : 58
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  31 : 51
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  31 : 51
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  34 : 44
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  42 : 48
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  42 : 48
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  45 : 53
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  49 : 19
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  50 : 7
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  50 : 7
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  50 : 26
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  50 : 26
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  51 : 21
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  51 : 21
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  52 : 18
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 19 :  52 : 41
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  3 : 17
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  32 : 6
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  32 : 6
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  32 : 41
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  33 : 9
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  33 : 9
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  33 : 32
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  33 : 32
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  33 : 51
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  36 : 23
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  36 : 23
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  37 : 20
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  37 : 39
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  37 : 39
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  37 : 52
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  37 : 52
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  39 : 4
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  39 : 4
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  41 : 16
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  41 : 16
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  44 : 44
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  45 : 14
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  49 : 32
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  51 : 36
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  51 : 36
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  54 : 38
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  54 : 38
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  55 : 0
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  55 : 0
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  57 : 16
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  57 : 16
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  57 : 32
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 20 :  57 : 32
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  4 : 34
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  4 : 34
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  5 : 15
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  5 : 15
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  7 : 42
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  7 : 42
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  15 : 14
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  15 : 14
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  16 : 13
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  16 : 13
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  17 : 54
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  17 : 54
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  24 : 6
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  24 : 25
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  24 : 25
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  25 : 44
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 21 :  25 : 44
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  36 : 47
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  39 : 3
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  39 : 3
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  41 : 4
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  41 : 4
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  43 : 23
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  43 : 23
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  47 : 52
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  47 : 52
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  49 : 16
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  49 : 16
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  50 : 8
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  50 : 41
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  52 : 43
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  52 : 43
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  57 : 9
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 22 :  57 : 9
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  1 : 6
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  3 : 43
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  5 : 25
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  7 : 53
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  7 : 53
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  10 : 4
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  10 : 4
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  12 : 29
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  12 : 29
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  16 : 9
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  16 : 9
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  17 : 3
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  17 : 3
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  18 : 38
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 18 -  5 - 2020 - 23 :  18 : 38
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    

@@ -1,0 +1,37 @@
+
+    ************* Date : 3 -  3 - 2020 - 12 :  32 : 27
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/groupin/groupin
+    Message: createUser Error *************
+    
+    ************* Date : 3 -  3 - 2020 - 12 :  32 : 43
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/groupin/groupin
+    Message: createUser Error *************
+    
+    ************* Date : 3 -  3 - 2020 - 12 :  33 : 3
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/groupin/groupin
+    Message: createUser Error *************
+    
+    ************* Date : 3 -  3 - 2020 - 14 :  41 : 45
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getGroupForEdit/:id
+    Message: getGroupForEdit Error *************
+    
+    ************* Date : 3 -  3 - 2020 - 14 :  42 : 9
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getGroupForEdit/:id
+    Message: getGroupForEdit Error *************
+    
+    ************* Date : 3 -  3 - 2020 - 14 :  42 : 52
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getGroupForEdit/:id
+    Message: getGroupForEdit Error *************
+    
+    ************* Date : 3 -  3 - 2020 - 14 :  43 : 9
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getGroupForEdit/:id
+    Message: getGroupForEdit Error *************
+    
+    ************* Date : 3 -  3 - 2020 - 14 :  43 : 44
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getGroupForEdit/:id
+    Message: getGroupForEdit Error *************
+    
+    ************* Date : 3 -  3 - 2020 - 17 :  15 : 1
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: put:/groupinfo/updateGroup/:id
+    Message: put group Error *************
+    

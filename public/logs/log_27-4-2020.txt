@@ -1,0 +1,57 @@
+
+    ************* Date : 27 -  4 - 2020 - 11 :  58 : 44
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/createUser
+    Message: createUser Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 12 :  0 : 19
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 12 :  0 : 20
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 12 :  5 : 40
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/createUser
+    Message: createUser Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 12 :  6 : 44
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/createUser
+    Message: createUser Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 12 :  9 : 5
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/createUser
+    Message: createUser Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 13 :  18 : 7
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/tenant/updateTenantDetails_data
+    Message: updatetenant Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 13 :  18 : 7
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/tenant/updateTenantDetails_data
+    Message: updatetenant Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 13 :  19 : 50
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/tenant/updateTenantDetails_data
+    Message: updatetenant Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 13 :  19 : 50
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/tenant/updateTenantDetails_data
+    Message: updatetenant Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 13 :  20 : 43
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/tenant/updateTenantDetails_data
+    Message: updatetenant Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 13 :  22 : 13
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/tenant/updateTenantDetails_data
+    Message: updatetenant Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 13 :  22 : 56
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/tenant/updateTenantDetails_data
+    Message: updatetenant Error *************
+    
+    ************* Date : 27 -  4 - 2020 - 13 :  23 : 17
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/tenant/updateTenantDetails_data
+    Message: updatetenant Error *************
+    

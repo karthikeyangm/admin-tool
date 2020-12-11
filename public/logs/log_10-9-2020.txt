@@ -1,0 +1,5 @@
+
+    ************* Date : 10 -  9 - 2020 - 13 :  18 : 27
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/VerifyTokenDetails
+    Message: TypeError: db.collection(...).find(...).toArray is not a function -> get VerifyTokenDetails Error *************
+    

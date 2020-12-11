@@ -1,0 +1,33 @@
+
+    ************* Date : 30 -  6 - 2020 - 10 :  1 : 15
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 30 -  6 - 2020 - 10 :  1 : 15
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 30 -  6 - 2020 - 19 :  30 : 27
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 30 -  6 - 2020 - 19 :  36 : 20
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 30 -  6 - 2020 - 19 :  36 : 20
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 30 -  6 - 2020 - 19 :  36 : 29
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: put:/Asset/updateasset/:id
+    Message: updateasset Error *************
+    
+    ************* Date : 30 -  6 - 2020 - 19 :  37 : 1
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 30 -  6 - 2020 - 19 :  37 : 1
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/getcountOfuser
+    Message: User count *************
+    
