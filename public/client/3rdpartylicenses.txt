@@ -895,6 +895,9 @@ MIT
 ng-chartist
 Apache-2.0
 
+ng-connection-service
+MIT
+
 ng-multiselect-dropdown
 MIT
 

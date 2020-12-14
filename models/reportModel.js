@@ -99,17 +99,19 @@ module.exports = {
     getScenarioBasedReport: (collectionName, data) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
-            db.collection(collectionName).find({ scenarioId:ObjectID(data.scenarioId),
-                userid:ObjectID(data.userid) }).toArray((err, res) => {
+            db.collection(collectionName).find({
+                scenarioId: ObjectID(data.scenarioId),
+                userid: ObjectID(data.userid)
+            }).toArray((err, res) => {
                 if (err) { reject(err) }
-                if (res.length == 0) {                      
+                if (res.length == 0) {
                     let result = {
                         success: false,
                         status: 403,
                         message: 'Report not found'
                     }
                     resolve(result)
-                } else {                    
+                } else {
                     let result = {
                         success: true,
                         status: 200,
@@ -120,6 +122,38 @@ module.exports = {
                 }
             })
         })
-    }
+    },
+
+
+    /**
+* In getStremingAssetDAta method to get streaming data.
+* @param  {string} collectionName Its show the collection name.
+* @param  {string} data Its contains scenario id.
+* @return {Object} Its return success or failure message with scenario streming data.
+*/
+    getStremingAssetDAta: (collectionName, id) => {
+        let db = global.db;
+        return new Promise((resolve, reject) => {
+            db.collection(collectionName).find({ _id: ObjectID(id) },
+                {
+                    projection: {
+                        createdAt: 0, createdBy: 0,
+                        SelectedGroup: 0, updatedAt: 0,
+                        updatedBy: 0, shortUrl: 0,
+                    }
+                }).toArray((err, resdata) => {
+                    console.log(resdata)
+                    if (err) { reject(err) }
+                    if (resdata.length == 0) {
+                        let result = {
+                            message: "Streaming Scenario data not found."
+                        }
+                        resolve(result)
+                    } else {
+                        resolve(resdata[0])
+                    }
+                })
+        })
+    },
 
 }

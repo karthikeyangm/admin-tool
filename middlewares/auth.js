@@ -19,7 +19,6 @@ module.exports = ((req, res, callback) => {
 	 * @param  {string} secretKey Its represent the secret key.
 	 * @return {Objec} Its return decoded data.
 	 */
-	console.log("=======headers")
 	console.log(req.headers)
 	if (!req.headers['x-auth-token']) {
 		var err = errorMsg.getError('x-auth-token is required');

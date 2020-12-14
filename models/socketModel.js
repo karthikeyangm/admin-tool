@@ -315,38 +315,96 @@ exports.addEndUserResult = (io, collectionName, data) => {
 
 
 
-exports.setAllAssestList = (io, collectionName, data) => {
-  console.log(data)
+exports.setAllAssestList = (io, collectionName, data1) => {
+  console.log("setAllAssestList ====== " + data1)
+  var obj = JSON.parse(JSON.stringify(data1));
+  var data = [];
+  for (var i in obj) {
+    data.push(obj[i]);
+    console.log(obj[i]);
+  }
   let db = global.db;
-  db.collection(collectionName).find({ type: data },
-    {
-      projection: {
-        _id: 1, title: 1, type: 1, asset_Thumpnail_encrypt: 1,
-        ViewMode: 1, InventoryItemKeyName: 1, ModelDetails: 1,
-        asset_manifest_encrypt: 1, asset_bundel_encrypt: 1, asset_cabel_encrypt: 1
-      }
-    }).toArray((err, data) => {
-      var result;
-      if (err) { result = [err] }
-      if (data.length == 0) {
-        result = [{
-          message: "Asset not found."
-        }]
-      } else {
-        result = data
-      }
-      io.emit('getAllAssestList', result);
-    })
+  db.collection(collectionName).find({ type: { $in: data } }, {
+    projection: {
+      _id: 1, title: 1, type: 1,
+      InventoryItemKeyName: 1, ViewMode: 1, ModelDetails: 1,
+      asset_manifest_encrypt: 1, asset_bundel_encrypt: 1, asset_cabel_encrypt: 1, asset_Thumpnail_encrypt: 1,
+      // thumbnailImgPath:1,bundlePath:1,manifestPath:1,cablePath:1
+    }
+  }).toArray((err, data) => {
+    var result;
+    if (err) { result = [err] }
+    if (data.length == 0) {
+      result = [{
+        message: "Asset not found."
+      }]
+    } else {
+      result = data
+    }
+    io.emit('getAllAssestList', result);
+  })
 }
+
+
+// exports.setAllAssestList = (io, collectionName, data) => {
+//   console.log(data)
+//   let db = global.db;
+//   db.collection(collectionName).find({ type: data },
+//     {
+//       projection: {
+//         _id: 1, title: 1, type: 1, asset_Thumpnail_encrypt: 1,
+//         ViewMode: 1, InventoryItemKeyName: 1, ModelDetails: 1,
+//         asset_manifest_encrypt: 1, asset_bundel_encrypt: 1, asset_cabel_encrypt: 1
+//       }
+//     }).toArray((err, data) => {
+//       var result;
+//       if (err) { result = [err] }
+//       if (data.length == 0) {
+//         result = [{
+//           message: "Asset not found."
+//         }]
+//       } else {
+//         result = data
+//       }
+//       io.emit('getAllAssestList', result);
+//     })
+// }
+
+// exports.setCustomAssest = (io, collectionName, data1) => {
+//   var obj = JSON.parse(JSON.stringify(data1));
+//   var data = [];
+//   for (var i in obj) {
+//     data.push(obj[i]);
+//   }
+//   let db = global.db;
+//   db.collection(collectionName).find({ title: { $in: data } }, {
+//     projection: {
+//       _id: 1, title: 1, type: 1, asset_Thumpnail_encrypt: 1,
+//       InventoryItemKeyName: 1, ViewMode: 1, ModelDetails: 1,
+//       asset_manifest_encrypt: 1, asset_bundel_encrypt: 1, asset_cabel_encrypt: 1
+//     }
+//   }).toArray((err, data) => {
+//     var result;
+//     if (err) { result = [err] }
+//     if (data.length == 0) {
+//       result = [{
+//         message: "Asset not found."
+//       }]
+//     } else {
+//       result = data
+//     }
+//     io.emit('getCustomAssest', result);
+//   })
+// }
 
 exports.setCustomAssest = (io, collectionName, data1) => {
   var obj = JSON.parse(JSON.stringify(data1));
   var data = [];
   for (var i in obj) {
-    data.push(obj[i]);
+    data.push(ObjectID(obj[i]));
   }
   let db = global.db;
-  db.collection(collectionName).find({ title: { $in: data } }, {
+  db.collection(collectionName).find({ _id: { $in: data } }, {
     projection: {
       _id: 1, title: 1, type: 1, asset_Thumpnail_encrypt: 1,
       InventoryItemKeyName: 1, ViewMode: 1, ModelDetails: 1,
@@ -365,4 +423,3 @@ exports.setCustomAssest = (io, collectionName, data1) => {
     io.emit('getCustomAssest', result);
   })
 }
-

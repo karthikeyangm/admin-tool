@@ -112,7 +112,7 @@ router.post('/createUser', (req, res) => {
       </body>
       </html>
       `
-      // var emailMsg = emailNotification.sendMailModel(emailId, subject, message, htmlMsg)
+      var emailMsg = emailNotification.sendMailModel(emailId, subject, message, htmlMsg)
       res.status(200).send(data)
     } else {
       res.status(200).send(data)

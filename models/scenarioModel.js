@@ -264,6 +264,7 @@ module.exports = {
             db.collection(collectionName).find({ Title: data.Title }).toArray((err, res) => {
                 if (err) { reject(err) }
                 if (res.length == 0) {
+                    data['publishFlag']=Number(0)
                     db.collection(collectionName).insertOne(data, (err, dataval) => {
                         if (err) { reject(err) }
                         else {

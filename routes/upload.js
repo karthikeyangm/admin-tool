@@ -11,7 +11,7 @@ let fs = require('fs-extra');
 var fileSystem = require('fs')
 var path = require('path');
 var crypto = require('crypto');
-
+var os = require('os');
 var ObjectID = require('mongodb').ObjectID;
 /**
  * Its contains the details of uploa0ding destination and renaming process
@@ -29,6 +29,11 @@ var storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         // const vName = file.originalname.split('.')
+        if(req.query.type == 'uploadcommand'){
+            cb(null, file.originalname + '-' + Date.now() + '.' + vName[vName.length - 1])
+        }else{
+            cb(null, file.originalname)    
+        }
         cb(null, file.originalname)// + '-' + Date.now() + '.' + vName[vName.length - 1])
         // cb(null, file.originalname + '-' + Date.now() + '.' + vName[vName.length - 1])
     }
@@ -76,6 +81,10 @@ router.post('/uploadfile', upload.single('File'), (req, res, next) => {
         // return next(error)
     } else {
         file['status'] = true
+        if (req.query.type == 'uploadcommand') {
+            var ret = (file.path).replace('uploads/', '');
+            file['path'] = process.env.baseUrl + ret
+        }
         res.status(200).send(file);
         // res.send(file)
     }
@@ -91,23 +100,30 @@ router.get('/getThumpnailImg/:id', (req, res) => {
     res.sendFile(p);
 })
 
+router.get('/getThumpnailImg', (req, res) => {
+    var TenantDetail = req.headers.tendetail
+    var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
+    let decrypted = JSON.parse(decipher.update(TenantDetail, 'hex', 'utf8') + decipher.final('utf8'));
+    let p = path.join(__dirname, `../uploads/${decrypted[0].tenantname}/thumbnail/${req.query.id}`);
+    res.sendFile(p);
+})
+
+
 router.get('/getbundle', (req, res) => {
-    // var filePath = path.join(__dirname, '/uploads/sample/bundle/cubetest.unity3d');
-    // var stat = fileSystem.statSync(filePath);
-    // res.download('uploads/sample/bundle/cubetest.unity3d')
     let filename = 'cubetest.unity3d'
     let p = path.join(__dirname, `../uploads/sample/bundle/${filename}`);
     res.sendFile(p);
     // res.download(p);
 })
 router.get('/getmanifest', (req, res) => {
-    // var filePath = path.join(__dirname, '/uploads/sample/bundle/cubetest.unity3d');
-    // var stat = fileSystem.statSync(filePath);
-    // res.download('uploads/sample/bundle/cubetest.unity3d')
     let filename = 'cubetest.unity3d.manifest'
-    let p = path.join(__dirname, `../uploads/sample/bundle/${filename}`);
-    res.sendFile(p);
-    // res.download(p);
+    if (os.type() == 'Windows_NT') {
+        let p = path.join(__dirname, `../sample/bundle/${filename}`);
+        res.sendFile(p);
+    } else {
+        let p = path.join(__dirname, `../uploads/sample/bundle/${filename}`);
+        res.sendFile(p);
+    }
 })
 
 
@@ -115,8 +131,14 @@ router.get('/getthumbnailData', (req, res) => {
     var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
     let decrypted = JSON.parse(decipher.update(req.query.id, 'hex', 'utf8') + decipher.final('utf8'));
     var vSplitData = (decrypted[0].thumbnailImgPath).split(process.env.baseUrl);
-    let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-    res.sendFile(p);
+    if (os.type() == 'Windows_NT') {
+        let p = path.join(__dirname, `../${vSplitData[1]}`);
+        res.sendFile(p);
+    } else {
+        let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
+        res.sendFile(p);
+    }
+
 })
 
 router.get('/getthumbnailData/:id', (req, res) => {
@@ -129,19 +151,17 @@ router.get('/getthumbnailData/:id', (req, res) => {
             var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
             let decrypted = JSON.parse(decipher.update(resdata[0].asset_encrypt, 'hex', 'utf8') + decipher.final('utf8'));
             var vSplitData = (decrypted[0].thumbnailImgPath).split(process.env.baseUrl);
-            let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-            res.sendFile(p);
+            if (os.type() == 'Windows_NT') {
+                let p = path.join(__dirname, `../${vSplitData[1]}`);
+                res.sendFile(p);
+            } else {
+                let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
+                res.sendFile(p);
+            }
         });
     } catch (e) {
         console.log(e)
     }
-
-
-    // var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
-    // let decrypted = JSON.parse(decipher.update(req.params.id, 'hex', 'utf8') + decipher.final('utf8'));
-    // var vSplitData = (decrypted[0].thumbnailImgPath).split(process.env.baseUrl);
-    // let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-    // res.sendFile(p);
 })
 
 router.get('/getbundelData', (req, res) => {
@@ -163,21 +183,18 @@ router.get('/getbundelData', (req, res) => {
             var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
             let decrypted = JSON.parse(decipher.update(resdata[0].asset_encrypt, 'hex', 'utf8') + decipher.final('utf8'));
             var vSplitData = (decrypted[0].bundlePath).split(process.env.baseUrl);
-            let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-            res.sendFile(p);
+            if (os.type() == 'Windows_NT') {
+                let p = path.join(__dirname, `../${vSplitData[1]}`);
+                res.sendFile(p);
+            } else {
+                let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
+                res.sendFile(p);
+            }
         });
 
     } catch (e) {
         console.log(e)
     }
-
-
-
-    // var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
-    // let decrypted = JSON.parse(decipher.update(req.query.id, 'hex', 'utf8') + decipher.final('utf8'));
-    // var vSplitData = (decrypted[0].bundlePath).split(process.env.baseUrl);
-    // let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-    // res.sendFile(p);
 })
 router.get('/getbundelData/:id', (req, res) => {
     let db = global.db;
@@ -189,29 +206,23 @@ router.get('/getbundelData/:id', (req, res) => {
             var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
             let decrypted = JSON.parse(decipher.update(resdata[0].asset_encrypt, 'hex', 'utf8') + decipher.final('utf8'));
             var vSplitData = (decrypted[0].bundlePath).split(process.env.baseUrl);
-            let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-            res.sendFile(p);
+            if (os.type() == 'Windows_NT') {
+                let p = path.join(__dirname, `../${vSplitData[1]}`);
+                res.sendFile(p);
+            } else {
+                let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
+                res.sendFile(p);
+            }
+
+
         });
 
     } catch (e) {
         console.log(e)
     }
 
-
-    // var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
-    // let decrypted = JSON.parse(decipher.update(req.params.id, 'hex', 'utf8') + decipher.final('utf8'));
-    // var vSplitData = (decrypted[0].bundlePath).split(process.env.baseUrl);
-    // let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-    // res.sendFile(p);
 })
 router.get('/getmanifestData', (req, res) => {
-    // var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
-    // let decrypted = JSON.parse(decipher.update(req.query.id, 'hex', 'utf8') + decipher.final('utf8'));
-    // console.log(req.query.id)
-    // var vSplitData = (decrypted[0].manifestPath).split(process.env.baseUrl);
-    // console.log(vSplitData)
-    // let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-    // res.sendFile(p);
     let db = global.db;
     try {
         db.collection('assestdetails').find({ _id: ObjectID(req.query.id) }).toArray((err, resdata) => {
@@ -224,8 +235,13 @@ router.get('/getmanifestData', (req, res) => {
             console.log(req.query.id)
             var vSplitData = (decrypted[0].manifestPath).split(process.env.baseUrl);
             console.log(vSplitData)
-            let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-            res.sendFile(p);
+            if (os.type() == 'Windows_NT') {
+                let p = path.join(__dirname, `../${vSplitData[1]}`);
+                res.sendFile(p);
+            } else {
+                let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
+                res.sendFile(p);
+            }
         });
     } catch (e) {
         console.log(e)
@@ -234,7 +250,7 @@ router.get('/getmanifestData', (req, res) => {
 router.get('/getmanifestData/:id', (req, res) => {
     let db = global.db;
     try {
-    console.log(req.params.id)
+        console.log(req.params.id)
         db.collection('assestdetails').find({ _id: ObjectID(req.params.id) }).toArray((err, resdata) => {
             if (err) {
                 console.log(err)
@@ -244,21 +260,17 @@ router.get('/getmanifestData/:id', (req, res) => {
             console.log(req.query.id)
             var vSplitData = (decrypted[0].manifestPath).split(process.env.baseUrl);
             console.log(vSplitData)
-            let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-            res.sendFile(p);
+            if (os.type() == 'Windows_NT') {
+                let p = path.join(__dirname, `../${vSplitData[1]}`);
+                res.sendFile(p);
+            } else {
+                let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
+                res.sendFile(p);
+            }
         });
     } catch (e) {
         console.log(e)
     }
-
-
-    // var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
-    // let decrypted = JSON.parse(decipher.update(req.params.id, 'hex', 'utf8') + decipher.final('utf8'));
-    // console.log(req.query.id)
-    // var vSplitData = (decrypted[0].manifestPath).split(process.env.baseUrl);
-    // console.log(vSplitData)
-    // let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-    // res.sendFile(p);
 })
 
 
@@ -275,8 +287,15 @@ router.get('/getcabelData/:id', (req, res) => {
             console.log(req.query.id)
             var vSplitData = (decrypted[0].cablePath).split(process.env.baseUrl);
             console.log(vSplitData)
-            let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-            res.sendFile(p);
+            if (os.type() == 'Windows_NT') {
+                let p = path.join(__dirname, `../${vSplitData[1]}`);
+                res.sendFile(p);
+            } else {
+                let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
+                res.sendFile(p);
+            }
+
+
         });
     } catch (e) {
         console.log(e)
@@ -296,8 +315,13 @@ router.get('/getcabelData', (req, res) => {
             console.log(req.query.id)
             var vSplitData = (decrypted[0].cablePath).split(process.env.baseUrl);
             console.log(vSplitData)
-            let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-            res.sendFile(p);
+            if (os.type() == 'Windows_NT') {
+                let p = path.join(__dirname, `../${vSplitData[1]}`);
+                res.sendFile(p);
+            } else {
+                let p = path.join(__dirname, `../uploads/${vSplitData[1]}`);
+                res.sendFile(p);
+            }
         });
     } catch (e) {
         console.log(e)
@@ -305,5 +329,7 @@ router.get('/getcabelData', (req, res) => {
 
 })
 
+console.log("Platform: " + os.platform());
+console.log("type: " + os.type());
 
 module.exports = router
