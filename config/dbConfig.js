@@ -32,7 +32,8 @@ function initialize(database, host,callback) {
 
 
 function openMongo(callback,host) {
-    var url = 'mongodb://' + process.env.DB_Address + ':' + process.env.DB_PORT + '/' + process.env.DB;
+      var url = 'mongodb://userTAB:txJHRk7RxGPLe0jO@mongodbv1/netapp';
+//    var url = 'mongodb://' + process.env.DB_Address + ':' + process.env.DB_PORT + '/' + process.env.DB;
 //    var url='mongodb+srv://elearning:Elearning321@cluster0.nzqy8.mongodb.net/TenantMaster?retryWrites=true&w=majority'
     mongoose.connect(url, {
         useCreateIndex: true, useNewUrlParser: true,useUnifiedTopology: true
