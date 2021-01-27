@@ -1,5 +1,0 @@
-
-    ************* Date : 4 -  9 - 2020 - 18 :  38 : 57
-    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
-    Message: TypeError: db.collection(...).find(...).sort is not a function -> get Error *************
-    

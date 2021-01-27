@@ -1,5 +1,0 @@
-
-    ************* Date : 7 -  4 - 2020 - 16 :  48 : 30
-    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
-    Message: get Error *************
-    

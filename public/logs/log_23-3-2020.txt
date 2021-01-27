@@ -1,5 +1,0 @@
-
-    ************* Date : 23 -  3 - 2020 - 14 :  22 : 2
-    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/report/getReportData
-    Message: get scenario Error *************
-    

@@ -1,5 +1,0 @@
-
-    ************* Date : 10 -  8 - 2020 - 10 :  30 : 50
-    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/asset/GetAllAssetCategory
-    Message: get asset cat Error *************
-    
