@@ -32,7 +32,7 @@ function initialize(database, host,callback) {
 
 
 function openMongo(callback,host) {
-    var url = 'mongodb://admin:S1fyTwswd@mongodb/NetApp';
+    var url = 'mongodb://admin:S1fyTwswd@localhost:27017/NetApp';
 //    var url='mongodb+srv://elearning:Elearning321@cluster0.nzqy8.mongodb.net/TenantMaster?retryWrites=true&w=majority'
     mongoose.connect(url, {
         useCreateIndex: true, useNewUrlParser: true,useUnifiedTopology: true
