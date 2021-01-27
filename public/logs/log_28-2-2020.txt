@@ -1,0 +1,5 @@
+
+    ************* Date : 28 -  2 - 2020 - 14 :  18 : 11
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    

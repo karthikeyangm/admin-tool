@@ -1,0 +1,17 @@
+
+    ************* Date : 6 -  7 - 2020 - 17 :  20 : 29
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 6 -  7 - 2020 - 17 :  20 : 29
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 6 -  7 - 2020 - 17 :  20 : 29
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/getcountOfuser
+    Message: User count *************
+    
+    ************* Date : 6 -  7 - 2020 - 17 :  22 : 51
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/getcountOfuser
+    Message: User count *************
+    

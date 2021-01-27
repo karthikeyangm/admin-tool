@@ -1,0 +1,13 @@
+
+    ************* Date : 28 -  9 - 2020 - 20 :  1 : 3
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllGroup_Limit
+    Message: TypeError: db.collection(...).find(...).skip is not a function -> get group Error *************
+    
+    ************* Date : 28 -  9 - 2020 - 20 :  6 : 3
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/asset/GetAllAssetCategory
+    Message: TypeError: db.collection(...).find(...).toArray is not a function -> get asset cat Error *************
+    
+    ************* Date : 28 -  9 - 2020 - 20 :  38 : 24
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllGroup_Limit
+    Message: TypeError: db.collection(...).find(...).skip is not a function -> get group Error *************
+    

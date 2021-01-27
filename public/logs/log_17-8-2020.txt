@@ -1,0 +1,85 @@
+
+    ************* Date : 17 -  8 - 2020 - 10 :  37 : 50
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  42 : 22
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  42 : 22
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  45 : 38
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  51 : 45
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/createUser
+    Message: createUser Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  51 : 55
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/createUser
+    Message: createUser Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  52 : 52
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/scenario/getAllScenario
+    Message: get scenario Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  53 : 25
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/createUser
+    Message: createUser Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  53 : 49
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/createUser
+    Message: createUser Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  53 : 50
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/createUser
+    Message: createUser Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  54 : 9
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/createUser
+    Message: createUser Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  54 : 10
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/createUser
+    Message: createUser Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  55 : 2
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/users/createUser
+    Message: createUser Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 10 :  57 : 26
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: delete:/users/deleteUser/:id
+    Message: delete Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 11 :  5 : 49
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/groupinfo/getAllgroup
+    Message: get group Error *************
+    
+    ************* Date : 17 -  8 - 2020 - 20 :  51 : 13
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/registerUser
+    Message: User register *************
+    
+    ************* Date : 17 -  8 - 2020 - 20 :  52 : 27
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/registerUser
+    Message: User register *************
+    
+    ************* Date : 17 -  8 - 2020 - 20 :  53 : 5
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/registerUser
+    Message: User register *************
+    
+    ************* Date : 17 -  8 - 2020 - 20 :  53 : 22
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/registerUser
+    Message: User register *************
+    
+    ************* Date : 17 -  8 - 2020 - 20 :  55 : 2
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/registerUser
+    Message: User register *************
+    
+    ************* Date : 17 -  8 - 2020 - 20 :  58 : 29
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/registerUser
+    Message: User register *************
+    

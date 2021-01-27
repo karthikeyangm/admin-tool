@@ -1,0 +1,5 @@
+
+    ************* Date : 2 -  9 - 2020 - 12 :  14 : 35
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/verifyEmailRegister
+    Message: User register verification *************
+    

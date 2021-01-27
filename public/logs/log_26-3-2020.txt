@@ -1,0 +1,21 @@
+
+    ************* Date : 26 -  3 - 2020 - 10 :  23 : 47
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 26 -  3 - 2020 - 10 :  23 : 52
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 26 -  3 - 2020 - 10 :  24 : 4
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 26 -  3 - 2020 - 10 :  24 : 34
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    
+    ************* Date : 26 -  3 - 2020 - 10 :  24 : 56
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: get:/users/getAllUser
+    Message: get Error *************
+    

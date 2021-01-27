@@ -1,0 +1,25 @@
+
+    ************* Date : 3 -  9 - 2020 - 17 :  42 : 36
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/registerUser
+    Message: User register *************
+    
+    ************* Date : 3 -  9 - 2020 - 17 :  43 : 34
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/registerUser
+    Message: User register *************
+    
+    ************* Date : 3 -  9 - 2020 - 17 :  44 : 9
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/registerUser
+    Message: User register *************
+    
+    ************* Date : 3 -  9 - 2020 - 17 :  46 : 39
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/registerUser
+    Message: addata is not defined User register *************
+    
+    ************* Date : 3 -  9 - 2020 - 17 :  47 : 32
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/registerUser
+    Message: addata is not defined -> User register *************
+    
+    ************* Date : 3 -  9 - 2020 - 17 :  47 : 55
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: post:/register/registerUser
+    Message: ReferenceError: addata is not defined -> User register *************
+    

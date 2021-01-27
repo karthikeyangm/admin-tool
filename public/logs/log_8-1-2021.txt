@@ -1,0 +1,5 @@
+
+    ************* Date : 8 -  1 - 2021 - 12 :  57 : 24
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: socket io setCustomAssest
+    Message: Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters -> setCustomAssest *************
+    
