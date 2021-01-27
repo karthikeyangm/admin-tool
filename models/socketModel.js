@@ -8,6 +8,7 @@ var ss = require('socket.io-stream');
 var path = require('path');
 var fs = require('fs')
 var crypto = require('crypto');
+var util = require("../utils/util");
 
 
 exports.insertDataBasedonWebGl = (socket, collectionName, data) => {
@@ -197,14 +198,18 @@ exports.insertDataBasedonWebGl = (socket, collectionName, data) => {
 }
 
 exports.getAssestBundle = (socket, io, data) => {
-  var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
-  let decrypted = JSON.parse(decipher.update(data, 'hex', 'utf8') + decipher.final('utf8'));
-  var vSplitData = (decrypted[0].bundlePath).split(process.env.baseUrl);
-  let pathvalue = path.join(__dirname, `../uploads/${vSplitData[1]}`);
-  fs.readFile(pathvalue, function (err, buf) {
-    let json = JSON.stringify(buf);
-    socket.emit('getAssestBundle', json);
-  })
+  try {
+    var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
+    let decrypted = JSON.parse(decipher.update(data, 'hex', 'utf8') + decipher.final('utf8'));
+    var vSplitData = (decrypted[0].bundlePath).split(process.env.baseUrl);
+    let pathvalue = path.join(__dirname, `../uploads/${vSplitData[1]}`);
+    fs.readFile(pathvalue, function (err, buf) {
+      let json = JSON.stringify(buf);
+      socket.emit('getAssestBundle', json);
+    })
+  } catch (e) {
+    util.writeLog(`${e} -> getAssestBundle`, 'socket io getAssestBundle');
+  }
 }
 
 exports.getAssestBundle_type = (socket, io, data) => {
@@ -212,31 +217,35 @@ exports.getAssestBundle_type = (socket, io, data) => {
 }
 
 exports.setAssestBundle_details = (socket, io, data) => {
-  let db = global.db;
-  db.collection('assestdetails').find({ title: data }).toArray((err, res) => {
+  try {
+    let db = global.db;
+    db.collection('assestdetails').find({ title: data }).toArray((err, res) => {
 
-    var result;
-    if (err) { result = [err] }
-    if (res.length == 0) {
-      result = [{
-        message: "Asset not found."
-      }]
-    } else {
-      result = [{
-        _id: res[0]._id,
-        title: res[0].title,
-        type: res[0].type,
-        bunndel_name: res[0].bunndel_name,
-        bundlePath: res[0].bundlePath,
-        cabel_name: res[0].cabel_name,
-        cablePath: res[0].cablePath,
-        manifest_name: res[0].manifest_name,
-        asset_bundel_encrypt: res[0].asset_bundel_encrypt,
-        asset_manifest_encrypt: res[0].asset_manifest_encrypt
-      }]
-    }
-    socket.emit('getAssestBundle_details', result);
-  })
+      var result;
+      if (err) { result = [err] }
+      if (res.length == 0) {
+        result = [{
+          message: "Asset not found."
+        }]
+      } else {
+        result = [{
+          _id: res[0]._id,
+          title: res[0].title,
+          type: res[0].type,
+          bunndel_name: res[0].bunndel_name,
+          bundlePath: res[0].bundlePath,
+          cabel_name: res[0].cabel_name,
+          cablePath: res[0].cablePath,
+          manifest_name: res[0].manifest_name,
+          asset_bundel_encrypt: res[0].asset_bundel_encrypt,
+          asset_manifest_encrypt: res[0].asset_manifest_encrypt
+        }]
+      }
+      socket.emit('getAssestBundle_details', result);
+    })
+  } catch (e) {
+    util.writeLog(`${e} -> setAssestBundle_details`, 'socket io setAssestBundle_details');
+  }
 }
 
 /**
@@ -246,103 +255,144 @@ exports.setAssestBundle_details = (socket, io, data) => {
  */
 
 exports.addEndUserResult = (io, collectionName, data) => {
+  try {
+    let db = global.db;
+    if (data.scenarioName != null) {
 
-  let db = global.db;
-  if (data.scenarioName != null) {
-
-    const beginnerRangeValue = { min: Number(data.biginnerRange.min), max: Number(data.biginnerRange.max) }
-    const intermediateRangeValue = { min: Number(data.intermediateRange.min), max: Number(data.intermediateRange.max) }
-    const expertRangeValue = { min: Number(data.expertRange.min), max: Number(data.expertRange.max) }
-    let dataFormation = {}
-    dataFormation = {
-      scenarioName: data.scenarioName,
-      userName: data.userName,
-      userid: ObjectID(data.userId),
-      scenarioId: ObjectID(data.scenarioId),
-      timeAllocatedValue: Number(data.timeAllocatedValue),
-      timeTakenValue: Number(data.timeTakenValue),
-      totalAttemptsCount: Number(data.totalAttemptsCount),
-      beginnerRange: beginnerRangeValue,
-      intermediateRange: intermediateRangeValue,
-      expertRange: expertRangeValue,
-      // isSkillMeterTransition: data.isSkillMeterTransition,
-      // isBarTransition: data.isBarTransition,
-      configCount: Number(data.attemptData.configurationCount),
-      // isAttemptsPanelTransition: data.isAttemptsPanelTransition
-    }
-    let vAttemptData = []
-    let warrningCount = 0
-    for (let i = 0; i < Number(data.attemptData.configurationCount); i++) {
-      let dataextrastep = 0
-      if (data.attemptData.extraSteps[i] !== undefined) {
-        dataextrastep = data.attemptData.extraSteps[i]
-        warrningCount += data.attemptData.extraSteps[i]
+      const beginnerRangeValue = { min: Number(data.biginnerRange.min), max: Number(data.biginnerRange.max) }
+      const intermediateRangeValue = { min: Number(data.intermediateRange.min), max: Number(data.intermediateRange.max) }
+      const expertRangeValue = { min: Number(data.expertRange.min), max: Number(data.expertRange.max) }
+      let dataFormation = {}
+      dataFormation = {
+        scenarioName: data.scenarioName,
+        userName: data.userName,
+        userid: ObjectID(data.userId),
+        scenarioId: ObjectID(data.scenarioId),
+        timeAllocatedValue: Number(data.timeAllocatedValue),
+        timeTakenValue: Number(data.timeTakenValue),
+        totalAttemptsCount: Number(data.totalAttemptsCount),
+        beginnerRange: beginnerRangeValue,
+        intermediateRange: intermediateRangeValue,
+        expertRange: expertRangeValue,
+        // isSkillMeterTransition: data.isSkillMeterTransition,
+        // isBarTransition: data.isBarTransition,
+        configCount: Number(data.attemptData.configurationCount),
+        // isAttemptsPanelTransition: data.isAttemptsPanelTransition
       }
-      vAttemptData.push({
-        step: `Configuration ${i + 1}`,
-        timeTaken: Number(data.attemptData.timeTakenList[i]),
-        attemptsCount: Number(data.attemptData.attemptsCountList[i]),
-        extraSteps: Number(dataextrastep)
-      })
-    }
-    dataFormation['AttemptsData'] = vAttemptData
-    dataFormation['warrningCount'] = warrningCount
-    dataFormation['updatedAt'] = new Date()
-    let result;
-    db.collection(collectionName).deleteOne({ userid: ObjectID(data.userId), scenarioId: ObjectID(data.scenarioId) })
-    console.log(dataFormation)
-    db.collection(collectionName).insertOne(dataFormation, (err, dataval) => {
-      if (err) {
-        result = { 'success': false, 'message': 'Some Error', 'error': err };
-      }
-      else {
-
-        db.collection('reports_History').insertOne(dataFormation, (err, dataval_history) => {
-          if (err) {
-            result = { 'success': false, 'message': 'Some Error', 'error': err };
-          }
-          else {
-            result = { 'success': true, 'message': 'Report Added Successfully' }
-            console.log(result)
-            io.emit('addEndUserResult_response', result);
-          }
+      let vAttemptData = []
+      let warrningCount = 0
+      for (let i = 0; i < Number(data.attemptData.configurationCount); i++) {
+        let dataextrastep = 0
+        if (data.attemptData.extraSteps[i] !== undefined) {
+          dataextrastep = data.attemptData.extraSteps[i]
+          warrningCount += data.attemptData.extraSteps[i]
+        }
+        vAttemptData.push({
+          // step: `Configuration ${i + 1}`,
+          step: data.attemptData.configurationNameList[i],
+          timeTaken: Number(data.attemptData.timeTakenList[i]),
+          attemptsCount: Number(data.attemptData.attemptsCountList[i]),
+          extraSteps: Number(dataextrastep)
         })
       }
-    })
+      dataFormation['AttemptsData'] = vAttemptData
+      dataFormation['warrningCount'] = warrningCount
+      dataFormation['updatedAt'] = new Date()
+      let result;
 
+      db.collection('reports_History').insertOne(dataFormation, (err, dataval_history) => {
+        if (err) {
+          console.log(err)
+          util.writeLog(`${err} -> reports_History`, 'socket io addEndUserResult reports_History');
+          result = { 'success': false, 'message': 'Some Error', 'error': err };
+        }
+        db.collection(collectionName).deleteOne({ userid: ObjectID(data.userId), scenarioId: ObjectID(data.scenarioId) }, (err, ressultdelete) => {
+          if (err) {
+            util.writeLog(`${err} -> reports delete`, 'socket io addEndUserResult reports delete');
+            console.log(err)
+          }
+          console.log(dataFormation)
+          db.collection(collectionName).insertOne(dataFormation, (err, dataval) => {
+            console.log(dataval)
+            if (err) {
+              util.writeLog(`${err} -> reports insert`, 'socket io addEndUserResult reports insert');
+              console.log(err)
+              result = { 'success': false, 'message': 'Some Error', 'error': err };
+            }
+            else {
+              result = { 'success': true, 'message': 'Report Added Successfully' }
+              console.log(result)
+              io.emit('addEndUserResult_response', result);
+            }
+          })
+        })
+      })
+
+
+
+
+      // db.collection(collectionName).deleteOne({ userid: ObjectID(data.userId), scenarioId: ObjectID(data.scenarioId) })
+      // console.log(dataFormation)
+      // db.collection(collectionName).insertOne(dataFormation, (err, dataval) => {
+      //   if (err) {
+      //     result = { 'success': false, 'message': 'Some Error', 'error': err };
+      //   }
+      //   else {
+
+      //     db.collection('reports_History').insertOne(dataFormation, (err, dataval_history) => {
+      //       if (err) {
+      //         result = { 'success': false, 'message': 'Some Error', 'error': err };
+      //       }
+      //       else {
+      //         result = { 'success': true, 'message': 'Report Added Successfully' }
+      //         console.log(result)
+      //         io.emit('addEndUserResult_response', result);
+      //       }
+      //     })
+      //   }
+      // })
+
+    }
+  } catch (e) {
+    util.writeLog(`${e} -> addEndUserResult`, 'socket io addEndUserResult');
   }
+
 }
 
 
 
 exports.setAllAssestList = (io, collectionName, data1) => {
-  console.log("setAllAssestList ====== " + data1)
-  var obj = JSON.parse(JSON.stringify(data1));
-  var data = [];
-  for (var i in obj) {
-    data.push(obj[i]);
-    console.log(obj[i]);
+  try {
+    console.log("setAllAssestList ====== " + data1)
+    var obj = JSON.parse(JSON.stringify(data1));
+    var data = [];
+    for (var i in obj) {
+      data.push(obj[i]);
+      console.log(obj[i]);
+    }
+    let db = global.db;
+    db.collection(collectionName).find({ type: { $in: data } }, {
+      projection: {
+        _id: 1, title: 1, type: 1,
+        InventoryItemKeyName: 1, ViewMode: 1, ModelDetails: 1,
+        asset_manifest_encrypt: 1, asset_bundel_encrypt: 1, asset_cabel_encrypt: 1, asset_Thumpnail_encrypt: 1,
+        // thumbnailImgPath:1,bundlePath:1,manifestPath:1,cablePath:1
+      }
+    }).toArray((err, data) => {
+      var result;
+      if (err) { result = [err] }
+      if (data.length == 0) {
+        result = [{
+          message: "Asset not found."
+        }]
+      } else {
+        result = data
+      }
+      io.emit('getAllAssestList', result);
+    })
+  } catch (e) {
+    util.writeLog(`${e} -> setAllAssestList`, 'socket io setAllAssestList');
   }
-  let db = global.db;
-  db.collection(collectionName).find({ type: { $in: data } }, {
-    projection: {
-      _id: 1, title: 1, type: 1,
-      InventoryItemKeyName: 1, ViewMode: 1, ModelDetails: 1,
-      asset_manifest_encrypt: 1, asset_bundel_encrypt: 1, asset_cabel_encrypt: 1, asset_Thumpnail_encrypt: 1,
-      // thumbnailImgPath:1,bundlePath:1,manifestPath:1,cablePath:1
-    }
-  }).toArray((err, data) => {
-    var result;
-    if (err) { result = [err] }
-    if (data.length == 0) {
-      result = [{
-        message: "Asset not found."
-      }]
-    } else {
-      result = data
-    }
-    io.emit('getAllAssestList', result);
-  })
 }
 
 
@@ -398,28 +448,32 @@ exports.setAllAssestList = (io, collectionName, data1) => {
 // }
 
 exports.setCustomAssest = (io, collectionName, data1) => {
-  var obj = JSON.parse(JSON.stringify(data1));
-  var data = [];
-  for (var i in obj) {
-    data.push(ObjectID(obj[i]));
+  try {
+    var obj = JSON.parse(JSON.stringify(data1));
+    var data = [];
+    for (var i in obj) {
+      data.push(ObjectID(obj[i]));
+    }
+    let db = global.db;
+    db.collection(collectionName).find({ _id: { $in: data } }, {
+      projection: {
+        _id: 1, title: 1, type: 1, asset_Thumpnail_encrypt: 1,
+        InventoryItemKeyName: 1, ViewMode: 1, ModelDetails: 1,
+        asset_manifest_encrypt: 1, asset_bundel_encrypt: 1, asset_cabel_encrypt: 1
+      }
+    }).toArray((err, data) => {
+      var result;
+      if (err) { result = [err] }
+      if (data.length == 0) {
+        result = [{
+          message: "Asset not found."
+        }]
+      } else {
+        result = data
+      }
+      io.emit('getCustomAssest', result);
+    })
+  } catch (e) {
+    util.writeLog(`${e} -> setCustomAssest`, 'socket io setCustomAssest');
   }
-  let db = global.db;
-  db.collection(collectionName).find({ _id: { $in: data } }, {
-    projection: {
-      _id: 1, title: 1, type: 1, asset_Thumpnail_encrypt: 1,
-      InventoryItemKeyName: 1, ViewMode: 1, ModelDetails: 1,
-      asset_manifest_encrypt: 1, asset_bundel_encrypt: 1, asset_cabel_encrypt: 1
-    }
-  }).toArray((err, data) => {
-    var result;
-    if (err) { result = [err] }
-    if (data.length == 0) {
-      result = [{
-        message: "Asset not found."
-      }]
-    } else {
-      result = data
-    }
-    io.emit('getCustomAssest', result);
-  })
 }

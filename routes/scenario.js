@@ -27,17 +27,26 @@ const webPush = require('web-push');
  */
 
 router.get('/getAllScenario', (req, res) => {
-  const vGetAllScenario = scenariomodel.getAllScenario('scenarios', '')
-  vGetAllScenario.then((data) => {
-    res.status(200).send(data)
-  }).catch(err => {
+  try {
+    const vGetAllScenario = scenariomodel.getAllScenario('scenarios', '')
+    vGetAllScenario.then((data) => {
+      res.status(200).send(data)
+    }).catch(err => {
+      util.writeLog(`${err} -> get scenario Error`, 'get:/scenario/getAllScenario');
+      var error = new Error();
+      error.success = false;
+      error.status = 404;
+      error.message = 'scenario not found';
+      res.send(error);
+    })
+  } catch (err) {
     util.writeLog(`${err} -> get scenario Error`, 'get:/scenario/getAllScenario');
     var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'scenario not found';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
-  })
+  }
 })
 
 
@@ -55,18 +64,27 @@ router.get('/getAllScenario', (req, res) => {
  */
 
 router.post('/getAllScenario_Limit', (req, res) => {
-  const ScenarioLimit = req.body
-  const vGetAllScenario = scenariomodel.getAllScenario_limit('scenarios', ScenarioLimit)
-  vGetAllScenario.then((data) => {
-    res.status(200).send(data)
-  }).catch(err => {
+  try {
+    const ScenarioLimit = req.body
+    const vGetAllScenario = scenariomodel.getAllScenario_limit('scenarios', ScenarioLimit)
+    vGetAllScenario.then((data) => {
+      res.status(200).send(data)
+    }).catch(err => {
+      util.writeLog(`${err} -> getAllScenario_Limit Error`, 'get:/scenario/getAllScenario_Limit');
+      var error = new Error();
+      error.success = false;
+      error.status = 404;
+      error.message = 'scenario not found';
+      res.send(error);
+    })
+  } catch (err) {
     util.writeLog(`${err} -> getAllScenario_Limit Error`, 'get:/scenario/getAllScenario_Limit');
     var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'scenario not found';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
-  })
+  }
 })
 
 /**
@@ -83,17 +101,26 @@ router.post('/getAllScenario_Limit', (req, res) => {
  */
 
 router.get('/getUserScenario/:id', (req, res) => {
-  const vGetAllScenario = scenariomodel.getUserScenario('scenarios', req.params.id)
-  vGetAllScenario.then((data) => {
-    res.status(200).send(data)
-  }).catch(err => {
+  try {
+    const vGetAllScenario = scenariomodel.getUserScenario('scenarios', req.params.id)
+    vGetAllScenario.then((data) => {
+      res.status(200).send(data)
+    }).catch(err => {
+      util.writeLog(`${err} -> get scenario Error`, 'get:/scenario/getUserScenario');
+      var error = new Error();
+      error.success = false;
+      error.status = 404;
+      error.message = 'Scenario not found';
+      res.send(error);
+    })
+  } catch (err) {
     util.writeLog(`${err} -> get scenario Error`, 'get:/scenario/getUserScenario');
     var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'Scenario not found';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
-  })
+  }
 })
 
 /**
@@ -111,18 +138,28 @@ router.get('/getUserScenario/:id', (req, res) => {
 
 
 router.post('/getUserScenario_Limit', (req, res) => {
-  const ScenarioLimit = req.body
-  const vGetAllScenario = scenariomodel.getUserScenario_limit('scenarios', ScenarioLimit)
-  vGetAllScenario.then((data) => {
-    res.status(200).send(data)
-  }).catch(err => {
+  try {
+    const ScenarioLimit = req.body
+    const vGetAllScenario = scenariomodel.getUserScenario_limit('scenarios', ScenarioLimit)
+    vGetAllScenario.then((data) => {
+      console.log(data)
+      res.status(200).send(data)
+    }).catch(err => {
+      util.writeLog(`${err} -> get scenario getUserScenario_Limit Error`, 'get:/scenario/getUserScenario_Limit');
+      var error = new Error();
+      error.success = false;
+      error.status = 404;
+      error.message = 'Scenario not found';
+      res.send(error);
+    })
+  } catch (err) {
     util.writeLog(`${err} -> get scenario getUserScenario_Limit Error`, 'get:/scenario/getUserScenario_Limit');
     var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'Scenario not found';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
-  })
+  }
 })
 
 /**
@@ -140,26 +177,35 @@ router.post('/getUserScenario_Limit', (req, res) => {
 
 // Delete User
 router.delete('/deletescenario/:id', (req, res) => {
-  if (req.params.id != undefined || req.params.id != 'undefined' || req.params.id != null) {
-    let id = req.params.id;
+  try {
+    if (req.params.id != undefined || req.params.id != 'undefined' || req.params.id != null) {
+      let id = req.params.id;
 
-    var vDeleteUser = scenariomodel.deleteScenario('scenarios', id)
-    vDeleteUser.then((data) => {
-      res.status(200).send(data)
-    }).catch(err => {
-      util.writeLog(`${err} -> delete Error`, 'delete:/scenario/deletescenario/:id');
+      var vDeleteUser = scenariomodel.deleteScenario('scenarios', id)
+      vDeleteUser.then((data) => {
+        res.status(200).send(data)
+      }).catch(err => {
+        util.writeLog(`${err} -> delete Error`, 'delete:/scenario/deletescenario/:id');
+        var error = new Error();
+        error.success = false;
+        error.status = 404;
+        error.message = 'Scenario not found ';
+        res.send(error);
+      })
+    } else {
+      util.writeLog('delete Error', 'delete:/scenario/deletescenario/:id');
       var error = new Error();
       error.success = false;
       error.status = 404;
-      error.message = 'Scenario not found ';
+      error.message = 'Scenario id not found ';
       res.send(error);
-    })
-  } else {
-    util.writeLog('delete Error', 'delete:/scenario/deletescenario/:id');
+    }
+  } catch (err) {
+    util.writeLog(`${err} -> delete Error`, 'delete:/scenario/deletescenario/:id');
     var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'Scenario id not found ';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
   }
 })
@@ -178,38 +224,47 @@ router.delete('/deletescenario/:id', (req, res) => {
  */
 
 router.post('/createScenario', (req, res) => {
-  var data = req.body;
+  try {
+    var data = req.body;
 
-  if (data.SelectedGroup != undefined) {
-    for (var i = 0; i < data.SelectedGroup.length; i++) {
-      data.SelectedGroup[i] = ObjectID(data.SelectedGroup[i]);
+    if (data.SelectedGroup != undefined) {
+      for (var i = 0; i < data.SelectedGroup.length; i++) {
+        data.SelectedGroup[i] = ObjectID(data.SelectedGroup[i]);
+      }
     }
-  }
 
-  var userStore = {};
+    var userStore = {};
 
-  userStore = {
-    // Title: 'data.Title',
-    // Information: 'data.Information',
+    userStore = {
+      // Title: 'data.Title',
+      // Information: 'data.Information',
 
-    Title: data.Title,
-    Information: data.Information,
-    createdAt: new Date(),
-    createdBy: ObjectID(data.createdBy),
-    SelectedGroup: data.SelectedGroup || []
-    // SelectedGroup: [ObjectID('5e5cb4df88e672ff4c61a9fd')]
-  };
-  const CreateScenario = scenariomodel.CreateScenario('scenarios', userStore)
-  CreateScenario.then((datasuccessorfailure) => {
-    res.status(200).send(datasuccessorfailure)
-  }).catch(err => {
-    var error = new Error();
+      Title: data.Title,
+      Information: data.Information,
+      createdAt: new Date(),
+      createdBy: ObjectID(data.createdBy),
+      SelectedGroup: data.SelectedGroup || []
+      // SelectedGroup: [ObjectID('5e5cb4df88e672ff4c61a9fd')]
+    };
+    const CreateScenario = scenariomodel.CreateScenario('scenarios', userStore)
+    CreateScenario.then((datasuccessorfailure) => {
+      res.status(200).send(datasuccessorfailure)
+    }).catch(err => {
+      var error = new Error();
+      util.writeLog(`${err} -> create Scenario Error`, 'post:/scenario/createScenario');
+      error.success = false;
+      error.status = 404;
+      error.message = 'Scenario not created';
+      res.send(error);
+    })
+  } catch (err) {
     util.writeLog(`${err} -> create Scenario Error`, 'post:/scenario/createScenario');
+    var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'Scenario not created';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
-  })
+  }
 })
 
 
@@ -229,32 +284,41 @@ router.post('/createScenario', (req, res) => {
 
 // User Update
 router.put('/updatescenario/:id', (req, res) => {
-  let useData = req.body
-  let userStore = {
-    Title: useData.Title,
-    Information: useData.Information,
-    updatedAt: new Date(),
-    updatedBy: ObjectID(useData.updatedBy),
-    // usrid:ObjectID(useData._id)
-  };
+  try {
+    let useData = req.body
+    let userStore = {
+      Title: useData.Title,
+      Information: useData.Information,
+      updatedAt: new Date(),
+      updatedBy: ObjectID(useData.updatedBy),
+      // usrid:ObjectID(useData._id)
+    };
 
-  if (useData.SelectedGroup != undefined) {
-    for (var i = 0; i < useData.SelectedGroup.length; i++) {
-      useData.SelectedGroup[i] = ObjectID(useData.SelectedGroup[i]);
+    if (useData.SelectedGroup != undefined) {
+      for (var i = 0; i < useData.SelectedGroup.length; i++) {
+        useData.SelectedGroup[i] = ObjectID(useData.SelectedGroup[i]);
+      }
+      userStore['SelectedGroup'] = useData.SelectedGroup
     }
-    userStore['SelectedGroup'] = useData.SelectedGroup
-  }
-  const vUpdatescenarios = scenariomodel.updatescenarios('scenarios', userStore, req.params.id)
-  vUpdatescenarios.then((data) => {
-    res.status(200).send(data)
-  }).catch(err => {
-    var error = new Error();
+    const vUpdatescenarios = scenariomodel.updatescenarios('scenarios', userStore, req.params.id)
+    vUpdatescenarios.then((data) => {
+      res.status(200).send(data)
+    }).catch(err => {
+      var error = new Error();
+      util.writeLog(`${err} -> Update Scenario Error`, 'put:/scenario/UpdateScenario');
+      error.success = false;
+      error.status = 404;
+      error.message = 'Scenario not Update';
+      res.send(error);
+    })
+  } catch (err) {
     util.writeLog(`${err} -> Update Scenario Error`, 'put:/scenario/UpdateScenario');
+    var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'Scenario not Update';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
-  })
+  }
 })
 
 

@@ -59,7 +59,7 @@ router.get('/:code', async (req, res) => {
     //   return res.status(404).json('No url found');
     // }
   } catch (err) {
-    res.status(500).json('Server error');
+    res.status(500).json('An internal error occurred. Please try again later');
   }
 });
 
@@ -86,7 +86,7 @@ router.get('/login/:code', async (req, res) => {
       return res.status(404).json('No url found');
     }
   } catch (err) {
-    res.status(500).json('Server error');
+    res.status(500).json('An internal error occurred. Please try again later');
   }
 });
 

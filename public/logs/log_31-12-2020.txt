@@ -1,0 +1,21 @@
+
+    ************* Date : 31 -  12 - 2020 - 12 :  18 : 53
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: socket io setCustomAssest
+    Message: Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters -> setCustomAssest *************
+    
+    ************* Date : 31 -  12 - 2020 - 15 :  35 : 10
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: socket io setCustomAssest
+    Message: Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters -> setCustomAssest *************
+    
+    ************* Date : 31 -  12 - 2020 - 15 :  35 : 26
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: socket io setCustomAssest
+    Message: Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters -> setCustomAssest *************
+    
+    ************* Date : 31 -  12 - 2020 - 15 :  36 : 42
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: socket io setCustomAssest
+    Message: Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters -> setCustomAssest *************
+    
+    ************* Date : 31 -  12 - 2020 - 15 :  37 : 32
+    IP Address: 124.7.41.184 PORT: 8080 Service Url: socket io setCustomAssest
+    Message: Error: Argument passed in must be a single String of 12 bytes or a string of 24 hex characters -> setCustomAssest *************
+    

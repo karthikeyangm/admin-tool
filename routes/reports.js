@@ -75,23 +75,33 @@ router.post('/getReportData', (req, res) => {
  */
 
 router.post('/getUserBasedScenarioList', (req, res) => {
-    const SelectedGroup = req.body
-    const ususerStoreeData = {}
-    for (var i = 0; i < SelectedGroup.length; i++) {
-        SelectedGroup[i] = ObjectID(SelectedGroup[i]);
-    }
-    ususerStoreeData['SelectedGroup'] = SelectedGroup
-    const getReportDatafrombundel = reportmodel.getUserbasedScenarioList('scenarios', ususerStoreeData)
-    getReportDatafrombundel.then((data) => {
-        res.status(200).send(data)
-    }).catch(err => {
+    try {
+        const SelectedGroup = req.body
+        const ususerStoreeData = {}
+        for (var i = 0; i < SelectedGroup.length; i++) {
+            SelectedGroup[i] = ObjectID(SelectedGroup[i]);
+        }
+        ususerStoreeData['SelectedGroup'] = SelectedGroup
+        const getReportDatafrombundel = reportmodel.getUserbasedScenarioList('scenarios', ususerStoreeData)
+        getReportDatafrombundel.then((data) => {
+            res.status(200).send(data)
+        }).catch(err => {
+            util.writeLog(`${err} -> get getUserBasedScenarioList Error`, 'post:/report/getUserBasedScenarioList');
+            var error = new Error();
+            error.success = false;
+            error.status = 404;
+            error.message = 'scenario not found';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> get getUserBasedScenarioList Error`, 'post:/report/getUserBasedScenarioList');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'scenario not found';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
+    }
+
 })
 
 /**
@@ -108,64 +118,91 @@ router.post('/getUserBasedScenarioList', (req, res) => {
  */
 
 router.post('/getSenarioBasedReport', (req, res) => {
-    const SecnarioId = req.body
-    const getReportDatafrombundel = reportmodel.getScenarioBasedReport('reports', SecnarioId)
-    getReportDatafrombundel.then((data) => {
-        res.status(200).send(data)
-    }).catch(err => {
+    try {
+        const SecnarioId = req.body
+        const getReportDatafrombundel = reportmodel.getScenarioBasedReport('reports', SecnarioId)
+        getReportDatafrombundel.then((data) => {
+            res.status(200).send(data)
+        }).catch(err => {
+            util.writeLog(`${err} -> getSenarioBasedReport Error`, 'post:/report/getSenarioBasedReport');
+            var error = new Error();
+            error.success = false;
+            error.status = 404;
+            error.message = 'scenario not found';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> getSenarioBasedReport Error`, 'post:/report/getSenarioBasedReport');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'scenario not found';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
+    }
 })
 
 
 router.get('/streamingAssetEndUser', (req, res) => {
-    if (req.query.id) {
-        console.log(req.query.id)
-        const getStremingAssetDAta = reportmodel.getStremingAssetDAta('scenarios', (req.query.id))
-        getStremingAssetDAta.then((data) => {
-            res.status(200).send(data)
-        }).catch(err => {
-            util.writeLog(`${err} -> get streamingAssetEndUser Error`, 'get:/report/streamingAssetEndUser');
+    try {
+        if (req.query.id) {
+            console.log(req.query.id)
+            const getStremingAssetDAta = reportmodel.getStremingAssetDAta('scenarios', (req.query.id))
+            getStremingAssetDAta.then((data) => {
+                res.status(200).send(data)
+            }).catch(err => {
+                util.writeLog(`${err} -> get streamingAssetEndUser Error`, 'get:/report/streamingAssetEndUser');
+                var error = new Error();
+                error.success = false;
+                error.status = 404;
+                error.message = 'Streaming data not found.';
+                res.send(error);
+            })
+        } else {
             var error = new Error();
             error.success = false;
             error.status = 404;
-            error.message = 'Streaming data not found.';
+            error.message = 'Streaming data  id not found.';
             res.send(error);
-        })
-    } else {
+        }
+    } catch (err) {
+        util.writeLog(`${err} -> get streamingAssetEndUser Error`, 'get:/report/streamingAssetEndUser');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'Streaming data  id not found.';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
     }
 })
 
 
 router.get('/streamingAssetEndUser/:id', (req, res) => {
-    if (req.params.id) {
-        console.log(req.params.id)
-        const getStremingAssetDAta = reportmodel.getStremingAssetDAta('scenarios', (req.params.id))
-        getStremingAssetDAta.then((data) => {
-            res.status(200).send(data)
-        }).catch(err => {
-            util.writeLog(`${err} -> get streamingAssetEndUser Error`, 'get:/report/streamingAssetEndUser');
+    try {
+        if (req.params.id) {
+            console.log(req.params.id)
+            const getStremingAssetDAta = reportmodel.getStremingAssetDAta('scenarios', (req.params.id))
+            getStremingAssetDAta.then((data) => {
+                res.status(200).send(data)
+            }).catch(err => {
+                util.writeLog(`${err} -> get streamingAssetEndUser Error`, 'get:/report/streamingAssetEndUser');
+                var error = new Error();
+                error.success = false;
+                error.status = 404;
+                error.message = 'Streaming Scenario data not found.';
+                res.send(error);
+            })
+        } else {
             var error = new Error();
             error.success = false;
             error.status = 404;
-            error.message = 'Streaming Scenario data not found.';
+            error.message = 'Streaming Scenario data id not found.';
             res.send(error);
-        })
-    } else {
+        }
+    } catch (err) {
+        util.writeLog(`${err} -> get streamingAssetEndUser Error`, 'get:/report/streamingAssetEndUser');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'Streaming Scenario data id not found.';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
     }
 })

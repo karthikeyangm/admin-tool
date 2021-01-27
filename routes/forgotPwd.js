@@ -40,7 +40,7 @@ router.post('/forgotPassword', (req, res) => {
                 let message = ``
                 let htmlMsg = 'Hello<strong> ' + data.data[0].firstname + ' ' + data.data[0].lastname + `</strong>,<br><br>Recently you had submitted a 
              request you to reset your password.
-             If you did so, <a href="${ process.env.baseUrl}#/pages/passwordredirect/${data.encryptDataValue}?tendetail=${req.body.tenantDeatails}">click here</a> 
+             If you did so, <a href="${process.env.baseUrl}#/pages/passwordredirect/${data.encryptDataValue}?tendetail=${req.body.tenantDeatails}">click here</a> 
              to proceed with resetting your password.<br/><br>Thanks,<br>${req.body.tenantName} - Admin<br><br>`
                 var emailMsg = emailNotification.sendMailModel(emailId, subject, message, htmlMsg)
                 let dataSuccess = {
@@ -73,85 +73,116 @@ router.post('/forgotPassword', (req, res) => {
 
 
 router.post('/validateId', (req, res) => {
-
-    const validateValue = forgotPwdModel.validateId('users', req.body)
-
-    validateValue.then((data) => {
-        res.send(data)
-    }).catch(err => {
+    try {
+        const validateValue = forgotPwdModel.validateId('users', req.body)
+        validateValue.then((data) => {
+            res.send(data)
+        }).catch(err => {
+            util.writeLog(`${err} -> post validateId Error`, 'post:/forgotPwd/validateId');
+            var error = new Error();
+            error.success = false;
+            error.status = 404;
+            error.message = 'Link Not Valid';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> post validateId Error`, 'post:/forgotPwd/validateId');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'Link Not Valid';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
+    }
 })
 
 router.post('/updatePassword', (req, res) => {
+    try {
+        var salt = '1234567890'; // default salt
+        var hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 24, 'sha512');
+        let parmsdata = {
+            password: (Buffer.from(hash).toString('hex')),
+            email: req.body.email
+        }
+        const updatePasswordValue = forgotPwdModel.updatePassword('users', parmsdata)
 
-    var salt = '1234567890'; // default salt
-    var hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 24, 'sha512');
-    let parmsdata = {
-        password: (Buffer.from(hash).toString('hex')),
-        email: req.body.email
-    }
-    const updatePasswordValue = forgotPwdModel.updatePassword('users', parmsdata)
-
-    updatePasswordValue.then((data) => {
-        res.send(data)
-    }).catch(err => {
+        updatePasswordValue.then((data) => {
+            res.send(data)
+        }).catch(err => {
+            util.writeLog(`${err} -> post updatePassword Error`, 'post:/forgotPwd/updatePassword');
+            var error = new Error();
+            error.success = false;
+            error.status = 404;
+            error.message = 'Link Not Valid';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> post updatePassword Error`, 'post:/forgotPwd/updatePassword');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'Link Not Valid';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
+    }
 })
 
 router.post('/changePasswordFirstLogin', (req, res) => {
+    try {
+        var salt = '1234567890'; // default salt
+        var hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 24, 'sha512');
+        let parmsdata = {
+            password: (Buffer.from(hash).toString('hex')),
+            email: req.body.email
+        }
+        const updatePasswordValue = forgotPwdModel.changePasswordFirstLogin('users', parmsdata)
 
-    var salt = '1234567890'; // default salt
-    var hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 24, 'sha512');
-    let parmsdata = {
-        password: (Buffer.from(hash).toString('hex')),
-        email: req.body.email
-    }
-    const updatePasswordValue = forgotPwdModel.changePasswordFirstLogin('users', parmsdata)
-
-    updatePasswordValue.then((data) => {
-        res.send(data)
-    }).catch(err => {
+        updatePasswordValue.then((data) => {
+            res.send(data)
+        }).catch(err => {
+            util.writeLog(`${err} -> post changePasswordFirstLogin Error`, 'post:/forgotPwd/changePasswordFirstLogin');
+            var error = new Error();
+            error.success = false;
+            error.status = 404;
+            error.message = 'Link Not Valid';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> post changePasswordFirstLogin Error`, 'post:/forgotPwd/changePasswordFirstLogin');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'Link Not Valid';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
+    }
 })
 
 router.post('/ProfilePasswordUpdate', (req, res) => {
+    try {
+        var salt = '1234567890'; // default salt
+        var hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 24, 'sha512');
+        let parmsdata = {
+            password: (Buffer.from(hash).toString('hex')),
+            email: req.body.email
+        }
+        const updatePasswordValue = forgotPwdModel.profilePasswordUpdate('users', parmsdata)
 
-    var salt = '1234567890'; // default salt
-    var hash = crypto.pbkdf2Sync(req.body.password, salt, 1000, 24, 'sha512');
-    let parmsdata = {
-        password: (Buffer.from(hash).toString('hex')),
-        email: req.body.email
-    }
-    const updatePasswordValue = forgotPwdModel.profilePasswordUpdate('users', parmsdata)
-
-    updatePasswordValue.then((data) => {
-        res.send(data)
-    }).catch(err => {
+        updatePasswordValue.then((data) => {
+            res.send(data)
+        }).catch(err => {
+            util.writeLog(`${err} -> post ProfilePasswordUpdate Error`, 'post:/forgotPwd/ProfilePasswordUpdate');
+            var error = new Error();
+            error.success = false;
+            error.status = 404;
+            error.message = 'Link Not Valid';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> post ProfilePasswordUpdate Error`, 'post:/forgotPwd/ProfilePasswordUpdate');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'Link Not Valid';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
+    }
 })
 
 

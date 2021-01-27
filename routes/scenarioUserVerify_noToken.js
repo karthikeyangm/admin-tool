@@ -24,23 +24,32 @@ var secretKey = require("../config/config")
  */
 
 router.post('/VerifyScenarioUser', function (req, res, next) {
-    var id = req.body.id;
-    var vGetUser = usermodel.getSingleUser('users', id)
-    vGetUser.then((data) => {
-        if (data.message) {
-            return res.status(404).send(data)
-        }
-        return res.status(200).send(data)
-    })
-    //   const userData = {
-    //     username: req.body.username,
-    //     password: req.body.password
-    //   }
-    //   const token = jwt.sign({ userData }, secretKey.secretKey)
-    //   const tokenObj = {
-    //     token: token
-    //   }
-    //   res.status(200).send(tokenObj)
+    try {
+        var id = req.body.id;
+        var vGetUser = usermodel.getSingleUser('users', id)
+        vGetUser.then((data) => {
+            if (data.message) {
+                return res.status(404).send(data)
+            }
+            return res.status(200).send(data)
+        })
+        //   const userData = {
+        //     username: req.body.username,
+        //     password: req.body.password
+        //   }
+        //   const token = jwt.sign({ userData }, secretKey.secretKey)
+        //   const tokenObj = {
+        //     token: token
+        //   }
+        //   res.status(200).send(tokenObj)
+    } catch (err) {
+        util.writeLog(`${err} -> VerifyScenarioUser`, 'post:/scenario/VerifyScenarioUser');
+        var error = new Error();
+        error.success = false;
+        error.status = 404;
+        error.message = 'An internal error occurred. Please try again later';
+        res.send(error);
+    }
 });
 
 module.exports = router;

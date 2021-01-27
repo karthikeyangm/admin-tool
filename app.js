@@ -70,7 +70,9 @@ app.use(express.urlencoded({ limit: '500mb', extended: false }))
 
 // app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public/'))
+app.use(express.static(__dirname + '/uploadspdf/'))
 // app.use(express.static(__dirname + '/uploads/'))
+app.use(express.static(__dirname + '/uploads/pdf/'))
 app.use(express.static(__dirname + '/public/client/'))
 app.use(cookieParser());
 app.use(session({
@@ -110,6 +112,12 @@ io.use(sharedsession(session({
 })));
 
 var crypto = require('crypto');
+io.set('heartbeat timeout', 600000); ///correct way
+io.set('heartbeat interval', 250000);
+
+
+io.set('transports', ['polling', 'websocket'])
+// io.set('transports', ['websocket'])
 io.use(function (socket, next) {
   socket.handshake.session.userdata = 'datat'
   if (socket.handshake.query && socket.handshake.query.token) {
@@ -162,7 +170,9 @@ io.use(function (socket, next) {
     socketmodel.setCustomAssest(io, 'assestdetails', assetName)
   });
 
-
+  socket.on("disconnect", () => {
+    console.log(socket.connected); // false
+  })
 
 })
 
@@ -178,18 +188,20 @@ app.use('/scenarioUserVerify', scenarioUserVerify);
 app.use('/users', auth, usersRouter);
 app.use('/scenario', auth, Scenario)
 app.use('/grouping', auth, grouping)
-app.use('/urlShortner',  urlShortner)
-app.use('/authoringToolData',  authoringToolData)
+app.use('/urlShortner', urlShortner)
+app.use('/authoringToolData', auth, authoringToolData)
 
 app.use('/asset', auth, asset)
 app.use('/tenant', auth, tenant)
 app.use('/dashboard', auth, dashboard)
 app.use('/uploadImg', auth, upload)
-app.use('/report',  report)
+app.use('/report', report)
 app.use('/register', register)
 app.use('/forgotPwd', forgotPwd)
-app.use(auth, express.static(__dirname + '/uploads/'))
-
+app.use(auth, express.static(__dirname + '/uploads/assets'))
+// app.use( express.static(__dirname + '/uploads/pdf/'))
+// app.use(express.static(path.join(__dirname, "uploads/pdf")))
+// app.use(auth,express.static(path.join(__dirname, "uploads/assets")))
 
 /**
  * catch 404 and forward to error handler

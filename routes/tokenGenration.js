@@ -37,55 +37,65 @@ const refreshTokens = {};
 
 
 router.post('/token', function (req, res, next) {
-  var data = req.body;
-  if (!data.username || !data.password) {
-    util.writeLog('Invalid Data! username and password both are required', 'post:/routes/tokenGenration');
+  try {
+    var data = req.body;
+    if (!data.username || !data.password) {
+      util.writeLog('Invalid Data! username and password both are required', 'post:/routes/tokenGenration');
+      var error = new Error();
+      error.success = false;
+      error.status = 400;
+      error.message = 'Invalid Data! username and password both are required';
+      return res.send(error);
+    }
+    var TenantDetail = ""
+    if (req.query.tendetail == undefined) {
+      TenantDetail = req.headers.tendetail
+    } else {
+      TenantDetail = req.query.tendetail
+    }
+    var salt = '1234567890'; // default salt
+    var hash = crypto.pbkdf2Sync(data.password, salt, 1000, 24, 'sha512');
+    var userStore = {};
+    userStore = {
+      username: data.username,
+      superAdmin: data.superAdmin,
+      password: (new Buffer(hash).toString('hex')),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    console.log(userStore)
+    const vCreateUser = usermodel.validateUser('users', userStore)
+    vCreateUser.then((data) => {
+      if (data.response.length > 0) {
+        if (data.success) {
+          const id = { id: data.response[0]._id }
+          const token = jwt.sign(id, secretKey.secretKey, { expiresIn: '10h' })
+          const refreshToken = randtoken.uid(256);
+          refreshTokens[refreshToken] = data.response[0]._id
+          const tokenObj = {
+            token: token,
+            refreshToken: refreshToken
+          }
+          return res.send({ ...tokenObj, ...data })
+        }
+      }
+      else {
+        let tokenObj = {
+          success: false,
+          status: 403,
+          message: 'Incorrect usename and password'
+        }
+        return res.send(tokenObj)
+      }
+    })
+  } catch (err) {
+    util.writeLog(`${err} -> token`, 'post:/token/token');
     var error = new Error();
     error.success = false;
-    error.status = 400;
-    error.message = 'Invalid Data! username and password both are required';
-    return res.send(error);
+    error.status = 404;
+    error.message = 'An internal error occurred. Please try again later';
+    res.send(error);
   }
-  var TenantDetail = ""
-  if (req.query.tendetail == undefined) {
-    TenantDetail = req.headers.tendetail
-  } else {
-    TenantDetail = req.query.tendetail
-  }
-  var salt = '1234567890'; // default salt
-  var hash = crypto.pbkdf2Sync(data.password, salt, 1000, 24, 'sha512');
-  var userStore = {};
-  userStore = {
-    username: data.username,
-    superAdmin: data.superAdmin,
-    password: (new Buffer(hash).toString('hex')),
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  };
-  const vCreateUser = usermodel.validateUser('users', userStore)
-  vCreateUser.then((data) => {
-    if (data.response.length > 0) {
-      if (data.success) {
-        const id = { id: data.response[0]._id }
-        const token = jwt.sign(id, secretKey.secretKey,{ expiresIn: '10h' })
-        const refreshToken = randtoken.uid(256);
-        refreshTokens[refreshToken] = data.response[0]._id
-        const tokenObj = {
-          token: token,
-          refreshToken: refreshToken
-        }
-        return res.send({ ...tokenObj, ...data })
-      }
-    }
-    else {
-      let tokenObj = {
-        success: false,
-        status: 403,
-        message: 'Incorrect usename and password'
-      }
-      return res.send(tokenObj)
-    }
-  })
 });
 
 
@@ -109,9 +119,13 @@ router.post('/shortUrl', async (req, res) => {
       return res.json(result)
     }
   } catch (err) {
-    res.status(500).json('Server error');
+    util.writeLog(`${err} -> shortUrl`, 'post:/token/shortUrl');
+    var error = new Error();
+    error.success = false;
+    error.status = 404;
+    error.message = 'An internal error occurred. Please try again later';
+    res.send(error);
   }
-
 
 
 })
@@ -131,7 +145,7 @@ router.post('/GetTenantDetailsInEncryption', (req, res) => {
   try {
     let TenantDetail = req.body.tenantDeatails
     let decipher = crypto.createDecipher(algorithm, key);
-    decrypted = JSON.parse(decipher.update(TenantDetail, 'hex', 'utf8') + decipher.final('utf8'));
+    let decrypted = JSON.parse(decipher.update(TenantDetail, 'hex', 'utf8') + decipher.final('utf8'));
     res.json(decrypted)
   } catch (e) {
     util.writeLog(`${e} -> get tenant decryption`, 'post:/token/GetTenantDetailsInEncryption');
@@ -145,25 +159,44 @@ router.post('/GetTenantDetailsInEncryption', (req, res) => {
 
 
 router.post('/refresh', function (req, res) {
-  const refreshToken = req.body.refreshToken;
-  if (refreshToken in refreshTokens) {
-    const user = {
-      'id': refreshTokens[refreshToken],
+  try {
+    const refreshToken = req.body.refreshToken;
+    if (refreshToken in refreshTokens) {
+      const user = {
+        'id': refreshTokens[refreshToken],
+      }
+      const token = jwt.sign(user, secretKey.secretKey, { expiresIn: '7d' });
+      res.json({ jwt: token })
     }
-    const token = jwt.sign(user, secretKey.secretKey, { expiresIn: '7d' });
-    res.json({jwt: token})
+    else {
+      res.sendStatus(401);
+    }
+  } catch (err) {
+    util.writeLog(`${err} -> refresh`, 'post:/token/refresh');
+    var error = new Error();
+    error.success = false;
+    error.status = 404;
+    error.message = 'An internal error occurred. Please try again later';
+    res.send(error);
   }
-  else {
-    res.sendStatus(401);
-  }
+
 });
 
-router.post('/logout', function (req, res) { 
-  const refreshToken = req.body.refreshToken;
-  if (refreshToken in refreshTokens) { 
-    delete refreshTokens[refreshToken];
-  } 
-  res.sendStatus(204); 
+router.post('/logout', function (req, res) {
+  try {
+    const refreshToken = req.body.refreshToken;
+    if (refreshToken in refreshTokens) {
+      delete refreshTokens[refreshToken];
+    }
+    res.sendStatus(204);
+  } catch (err) {
+    util.writeLog(`${err} -> logout`, 'post:/token/logout');
+    var error = new Error();
+    error.success = false;
+    error.status = 404;
+    error.message = 'An internal error occurred. Please try again later';
+    res.send(error);
+  }
 });
 
 module.exports = router;

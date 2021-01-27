@@ -59,6 +59,7 @@ module.exports = {
                     }
                 }
             }
+            console.log(query)
 
             db.collection(collectionName).find(query).skip(parseInt(ScenarioLimit.start_user)).
                 limit(parseInt(ScenarioLimit.end_user)).toArray((err, res) => {

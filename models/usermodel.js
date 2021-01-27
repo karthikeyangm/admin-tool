@@ -414,7 +414,7 @@ module.exports = {
             }
 
             var decipher = crypto.createDecipher(algorithm, key);
-            decrypted = JSON.parse(decipher.update(TenantDetail, 'hex', 'utf8') + decipher.final('utf8'));
+           let decrypted = JSON.parse(decipher.update(TenantDetail, 'hex', 'utf8') + decipher.final('utf8'));
 
 
             // db.collection(collectionName).find().toArray((err, totalUser) => {
@@ -466,7 +466,8 @@ module.exports = {
 
                                             vPasswordLen = (val.Password).toString().length
                                             const validateEmail = (email) => {
-                                                const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                                                const re = /\S+@\S+\.\S+/;
+                                                // const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                                                 return re.test(email.toLowerCase());
                                             }
 

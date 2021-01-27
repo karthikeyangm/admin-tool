@@ -26,21 +26,30 @@ var ObjectID = require('mongodb').ObjectID;
  */
 
 router.post('/CreateUserScenarioGroup', (req, res) => {
-  var data = req.body;
-  data[0]['createdAt'] = new Date()
-  data[0]['updatedAt'] = new Date()
-  data[0]['status'] = 'Active'
-  const vCreateUserScenarioGroup = groupingModel.CreateUserScenarioGroup('groupinfo', data[0])
-  vCreateUserScenarioGroup.then((data) => {
-    res.status(200).send(data)
-  }).catch(err => {
+  try {
+    var data = req.body;
+    data[0]['createdAt'] = new Date()
+    data[0]['updatedAt'] = new Date()
+    data[0]['status'] = 'Active'
+    const vCreateUserScenarioGroup = groupingModel.CreateUserScenarioGroup('groupinfo', data[0])
+    vCreateUserScenarioGroup.then((data) => {
+      res.status(200).send(data)
+    }).catch(err => {
+      util.writeLog(`${err} -> createUser Error`, 'post:/groupin/CreateUserScenarioGroup');
+      var error = new Error();
+      error.success = false;
+      error.status = 404;
+      error.message = 'Group not created';
+      res.send(error);
+    })
+  } catch (err) {
     util.writeLog(`${err} -> createUser Error`, 'post:/groupin/CreateUserScenarioGroup');
     var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'Group not created';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
-  })
+  }
 })
 
 
@@ -58,17 +67,26 @@ router.post('/CreateUserScenarioGroup', (req, res) => {
  */
 
 router.get('/getAllGroup', (req, res) => {
-  const vGetAllScenario = groupingModel.getAllgroupinfo('groupinfo', '')
-  vGetAllScenario.then((data) => {
-    res.status(200).send(data)
-  }).catch(err => {
+  try {
+    const vGetAllScenario = groupingModel.getAllgroupinfo('groupinfo', '')
+    vGetAllScenario.then((data) => {
+      res.status(200).send(data)
+    }).catch(err => {
+      util.writeLog(`${err} -> get group Error`, 'get:/groupinfo/getAllgroup');
+      var error = new Error();
+      error.success = false;
+      error.status = 404;
+      error.message = 'group not found';
+      res.send(error);
+    })
+  } catch (err) {
     util.writeLog(`${err} -> get group Error`, 'get:/groupinfo/getAllgroup');
     var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'group not found';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
-  })
+  }
 })
 
 /**
@@ -85,18 +103,27 @@ router.get('/getAllGroup', (req, res) => {
  * @return {Object} Its return success or failure message and group info data.
  */
 router.post('/getAllGroup_Limit', (req, res) => {
-  const groupLimit = req.body
-  const vGetAllScenario = groupingModel.getAllgroupinfo_limit('groupinfo', groupLimit)
-  vGetAllScenario.then((data) => {
-    res.status(200).send(data)
-  }).catch(err => {
+  try {
+    const groupLimit = req.body
+    const vGetAllScenario = groupingModel.getAllgroupinfo_limit('groupinfo', groupLimit)
+    vGetAllScenario.then((data) => {
+      res.status(200).send(data)
+    }).catch(err => {
+      util.writeLog(`${err} -> get group Error`, 'get:/groupinfo/getAllGroup_Limit');
+      var error = new Error();
+      error.success = false;
+      error.status = 404;
+      error.message = 'group not found';
+      res.send(error);
+    })
+  } catch (err) {
     util.writeLog(`${err} -> get group Error`, 'get:/groupinfo/getAllGroup_Limit');
     var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'group not found';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
-  })
+  }
 })
 
 
@@ -114,18 +141,27 @@ router.post('/getAllGroup_Limit', (req, res) => {
  * @return {Object} Its return success or failure message and group info data.
  */
 router.post('/getUserGroup_Limit', (req, res) => {
-  const groupLimit = req.body
-  const vGetAllScenario = groupingModel.getUsergroupinfo_limit('groupinfo', groupLimit)
-  vGetAllScenario.then((data) => {
-    res.status(200).send(data)
-  }).catch(err => {
+  try {
+    const groupLimit = req.body
+    const vGetAllScenario = groupingModel.getUsergroupinfo_limit('groupinfo', groupLimit)
+    vGetAllScenario.then((data) => {
+      res.status(200).send(data)
+    }).catch(err => {
+      util.writeLog(`${err} -> get group Error`, 'get:/groupinfo/getUserGroup_Limit');
+      var error = new Error();
+      error.success = false;
+      error.status = 404;
+      error.message = 'group not found';
+      res.send(error);
+    })
+  } catch (err) {
     util.writeLog(`${err} -> get group Error`, 'get:/groupinfo/getUserGroup_Limit');
     var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'group not found';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
-  })
+  }
 })
 
 
@@ -143,32 +179,40 @@ router.post('/getUserGroup_Limit', (req, res) => {
  * @return {Object} Its return success or failure message and group info data.
  */
 router.get('/getGroupForEdit/:id', (req, res) => {
-  if (req.params.id) {
-    var id = req.params.id;
-    var vGetUser = groupingModel.getSinglegroup('groupinfo', id)
-    vGetUser.then((data) => {
-      if (data.message) {
-        res.status(404).send(data)
-      }
-      res.status(200).send(data)
-    }).catch(err => {
+  try {
+    if (req.params.id) {
+      var id = req.params.id;
+      var vGetUser = groupingModel.getSinglegroup('groupinfo', id)
+      vGetUser.then((data) => {
+        if (data.message) {
+          res.status(404).send(data)
+        }
+        res.status(200).send(data)
+      }).catch(err => {
 
-      util.writeLog(`${err} -> getGroupForEdit Error`, 'get:/groupinfo/getGroupForEdit/:id');
+        util.writeLog(`${err} -> getGroupForEdit Error`, 'get:/groupinfo/getGroupForEdit/:id');
+        var error = new Error();
+        error.success = false;
+        error.status = 404;
+        error.message = 'Group not found ';
+        res.send(error);
+      })
+    } else {
+      util.writeLog('getGroupForEdit Error', 'get:/groupinfo/getGroupForEdit/:id');
       var error = new Error();
       error.success = false;
       error.status = 404;
-      error.message = 'Group not found ';
+      error.message = 'Groupid not found ';
       res.send(error);
-    })
-  } else {
+    }
+  } catch (err) {
     util.writeLog('getGroupForEdit Error', 'get:/groupinfo/getGroupForEdit/:id');
     var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'Groupid not found ';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
   }
-
 })
 
 
@@ -187,18 +231,27 @@ router.get('/getGroupForEdit/:id', (req, res) => {
  * @return {Object} Its return success or failure message and group info data.
  */
 router.put('/updateGroup/:id', (req, res) => {
-  let useData = req.body
-  const vUpdateUser = groupingModel.updategroupInfo('groupinfo', useData[0], req.params.id)
-  vUpdateUser.then((data) => {
-    res.status(200).send(data)
-  }).catch(err => {
+  try {
+    let useData = req.body
+    const vUpdateUser = groupingModel.updategroupInfo('groupinfo', useData[0], req.params.id)
+    vUpdateUser.then((data) => {
+      res.status(200).send(data)
+    }).catch(err => {
+      util.writeLog(`${err} -> put group Error`, 'put:/groupinfo/updateGroup/:id');
+      var error = new Error();
+      error.success = false;
+      error.status = 404;
+      error.message = 'group not found';
+      res.send(error);
+    })
+  } catch (err) {
     util.writeLog(`${err} -> put group Error`, 'put:/groupinfo/updateGroup/:id');
     var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'group not found';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
-  })
+  }
 })
 /**
  * Sends a HTTP DELETE request to delete group record.
@@ -215,26 +268,35 @@ router.put('/updateGroup/:id', (req, res) => {
  * @return {Object} Its return success or failure message.
  */
 router.delete('/deleteGroup/:id', (req, res) => {
-  if (req.params.id != undefined || req.params.id != 'undefined' || req.params.id != null) {
-    let id = req.params.id;
+  try {
+    if (req.params.id != undefined || req.params.id != 'undefined' || req.params.id != null) {
+      let id = req.params.id;
 
-    var vDeleteUser = groupingModel.deleteGroup('groupinfo', id)
-    vDeleteUser.then((data) => {
-      res.status(200).send(data)
-    }).catch(err => {
-      util.writeLog(`${err} -> delete Error`, 'delete:/groupinfo/deleteGroup/:id');
+      var vDeleteUser = groupingModel.deleteGroup('groupinfo', id)
+      vDeleteUser.then((data) => {
+        res.status(200).send(data)
+      }).catch(err => {
+        util.writeLog(`${err} -> delete Error`, 'delete:/groupinfo/deleteGroup/:id');
+        var error = new Error();
+        error.success = false;
+        error.status = 404;
+        error.message = 'Group not found ';
+        res.send(error);
+      })
+    } else {
+      util.writeLog('delete Error', 'delete:/groupinfo/deleteGroup/:id');
       var error = new Error();
       error.success = false;
       error.status = 404;
-      error.message = 'Group not found ';
+      error.message = 'Group id not found ';
       res.send(error);
-    })
-  } else {
-    util.writeLog('delete Error', 'delete:/groupinfo/deleteGroup/:id');
+    }
+  } catch (err) {
+    util.writeLog(`${err} -> delete Error`, 'delete:/groupinfo/deleteGroup/:id');
     var error = new Error();
     error.success = false;
     error.status = 404;
-    error.message = 'Group id not found ';
+    error.message = 'An internal error occurred. Please try again later';
     res.send(error);
   }
 })

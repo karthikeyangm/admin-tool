@@ -24,29 +24,38 @@ var ObjectID = require('mongodb').ObjectID;
  */
 
 router.get('/GetAllAssetCategory', (req, res) => {
-    const vGetAllCategory = assestModel.getAllassetCategory('categorylist', '')
-    vGetAllCategory.then((data) => {
-        if (data.length > 0) {
-            let result = {
-                success: true,
-                data: data
+    try {
+        const vGetAllCategory = assestModel.getAllassetCategory('categorylist', '')
+        vGetAllCategory.then((data) => {
+            if (data.length > 0) {
+                let result = {
+                    success: true,
+                    data: data
+                }
+                res.status(200).send(result);
+            } else {
+                let result = {
+                    success: false,
+                    data: ''
+                }
+                res.status(200).send(result);
             }
-            res.status(200).send(result);
-        } else {
-            let result = {
-                success: false,
-                data: ''
-            }
-            res.status(200).send(result);
-        }
-    }).catch(err => {
+        }).catch(err => {
+            util.writeLog(`${err} -> get asset cat Error`, 'get:/asset/GetAllAssetCategory');
+            var error = new Error();
+            error.success = false;
+            error.status = 404;
+            error.message = 'Asset Category not found';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> get asset cat Error`, 'get:/asset/GetAllAssetCategory');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'Asset Category not found';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
+    }
 
 })
 
@@ -63,29 +72,38 @@ router.get('/GetAllAssetCategory', (req, res) => {
  * @return {Object} Its retrun success or failure message with all data.
  */
 router.get('/GetAllAsset', (req, res) => {
-    const vGetAllCategory = assestModel.getAllassetCategory('assestdetails', '')
-    vGetAllCategory.then((data) => {
-        if (data.length > 0) {
-            let result = {
-                success: true,
-                data: data
+    try {
+        const vGetAllCategory = assestModel.getAllassetCategory('assestdetails', '')
+        vGetAllCategory.then((data) => {
+            if (data.length > 0) {
+                let result = {
+                    success: true,
+                    data: data
+                }
+                res.status(200).send(result);
+            } else {
+                let result = {
+                    success: false,
+                    data: ''
+                }
+                res.status(200).send(result);
             }
-            res.status(200).send(result);
-        } else {
-            let result = {
-                success: false,
-                data: ''
-            }
-            res.status(200).send(result);
-        }
-    }).catch(err => {
+        }).catch(err => {
+            util.writeLog(`${err} -> get asset Error`, 'get:/asset/GetAllAsset');
+            var error = new Error();
+            error.success = false;
+            error.status = 404;
+            error.message = 'Asset not found';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> get asset Error`, 'get:/asset/GetAllAsset');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'Asset not found';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
+    }
 })
 
 
@@ -104,29 +122,38 @@ router.get('/GetAllAsset', (req, res) => {
  * @return {Object} Its retrun success or failure message with all data.
  */
 router.get('/getAllassetViewMode', (req, res) => {
-    const vGetAllviewMode = assestModel.getAllassetViewMode('viewMode', '')
-    vGetAllviewMode.then((data) => {
-        if (data.length > 0) {
-            let result = {
-                success: true,
-                data: data
+    try {
+        const vGetAllviewMode = assestModel.getAllassetViewMode('viewMode', '')
+        vGetAllviewMode.then((data) => {
+            if (data.length > 0) {
+                let result = {
+                    success: true,
+                    data: data
+                }
+                res.status(200).send(result);
+            } else {
+                let result = {
+                    success: false,
+                    data: ''
+                }
+                res.status(200).send(result);
             }
-            res.status(200).send(result);
-        } else {
-            let result = {
-                success: false,
-                data: ''
-            }
-            res.status(200).send(result);
-        }
-    }).catch(err => {
+        }).catch(err => {
+            util.writeLog(`${err} -> get asset vGetAllviewMode Error`, 'get:/asset/getAllassetViewMode');
+            var error = new Error();
+            error.success = false;
+            error.status = 404;
+            error.message = 'Viewmode not found';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> get asset vGetAllviewMode Error`, 'get:/asset/getAllassetViewMode');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'Viewmode not found';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
+    }
 })
 
 
@@ -144,29 +171,38 @@ router.get('/getAllassetViewMode', (req, res) => {
  * @return {Object} Its retrun success or failure message with all data.
  */
 router.post('/getAllassetInventoryItemKeyName', (req, res) => {
-    const vGetAllInventoryItemKeyName = assestModel.getAllassetInventoryItemKeyName('inventoryItemKeyName', req.body)
-    vGetAllInventoryItemKeyName.then((data) => {
-        if (data.length > 0) {
-            let result = {
-                success: true,
-                data: data
+    try {
+        const vGetAllInventoryItemKeyName = assestModel.getAllassetInventoryItemKeyName('inventoryItemKeyName', req.body)
+        vGetAllInventoryItemKeyName.then((data) => {
+            if (data.length > 0) {
+                let result = {
+                    success: true,
+                    data: data
+                }
+                res.status(200).send(result);
+            } else {
+                let result = {
+                    success: false,
+                    data: ''
+                }
+                res.status(200).send(result);
             }
-            res.status(200).send(result);
-        } else {
-            let result = {
-                success: false,
-                data: ''
-            }
-            res.status(200).send(result);
-        }
-    }).catch(err => {
+        }).catch(err => {
+            util.writeLog(`${err} -> get asset vGetAllInventoryItemKeyName Error`, 'get:/asset/getAllassetInventoryItemKeyName');
+            var error = new Error();
+            error.success = false;
+            error.status = 404;
+            error.message = 'InventoryItem not found';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> get asset vGetAllInventoryItemKeyName Error`, 'get:/asset/getAllassetInventoryItemKeyName');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'InventoryItem not found';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
+    }
 })
 
 
@@ -184,30 +220,39 @@ router.post('/getAllassetInventoryItemKeyName', (req, res) => {
  * @return {Object} Its retrun success or failure message with all data.
  */
 router.post('/getAllassetModelDetails', (req, res) => {
-    console.log(req.body)
-    const vGetAllModelDetails = assestModel.getAllassetModelDetails('modelDetails', req.body)
-    vGetAllModelDetails.then((data) => {
-        if (data.length > 0) {
-            let result = {
-                success: true,
-                data: data
+    try {
+        console.log(req.body)
+        const vGetAllModelDetails = assestModel.getAllassetModelDetails('modelDetails', req.body)
+        vGetAllModelDetails.then((data) => {
+            if (data.length > 0) {
+                let result = {
+                    success: true,
+                    data: data
+                }
+                res.status(200).send(result);
+            } else {
+                let result = {
+                    success: false,
+                    data: ''
+                }
+                res.status(200).send(result);
             }
-            res.status(200).send(result);
-        } else {
-            let result = {
-                success: false,
-                data: ''
-            }
-            res.status(200).send(result);
-        }
-    }).catch(err => {
+        }).catch(err => {
+            util.writeLog(`${err} -> get asset vGetAllModelDetails Error`, 'get:/asset/getAllassetModelDetails');
+            var error = new Error();
+            error.success = false;
+            error.status = 404;
+            error.message = 'ModelDetails not found';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> get asset vGetAllModelDetails Error`, 'get:/asset/getAllassetModelDetails');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'ModelDetails not found';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
+    }
 })
 
 
@@ -227,18 +272,27 @@ router.post('/getAllassetModelDetails', (req, res) => {
  */
 
 router.post('/createAssetData', (req, res) => {
-    var data = req.body;
-    const CreateAsset = assestModel.CreateAsset('assestdetails', data)
-    CreateAsset.then((datavalue) => {
-        res.status(200).send(datavalue)
-    }).catch(err => {
-        var error = new Error();
+    try {
+        var data = req.body;
+        const CreateAsset = assestModel.CreateAsset('assestdetails', data)
+        CreateAsset.then((datavalue) => {
+            res.status(200).send(datavalue)
+        }).catch(err => {
+            var error = new Error();
+            util.writeLog(`${err} -> create Asset Error`, 'post:/asset/createAssetData');
+            error.success = false;
+            error.status = 404;
+            error.message = 'Asset not created';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> create Asset Error`, 'post:/asset/createAssetData');
+        var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'Asset not created';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
+    }
 })
 
 
@@ -257,28 +311,37 @@ router.post('/createAssetData', (req, res) => {
  * @return {Object} Its retrun success or failure message with data.
  */
 router.get('/getAssetForEdit/:id', (req, res) => {
-    if (req.params.id) {
-        var id = req.params.id;
-        var vGetUser = assestModel.getSingleAsset('assestdetails', id)
-        vGetUser.then((data) => {
-            if (data.message) {
-                res.status(404).send(data)
-            }
-            res.status(200).send(data)
-        }).catch(err => {
-            util.writeLog(`${err} -> getAssetForEdit Error`, 'get:/Asset/getAssetForEdit');
-            let error = new Error();
+    try {
+        if (req.params.id) {
+            var id = req.params.id;
+            var vGetUser = assestModel.getSingleAsset('assestdetails', id)
+            vGetUser.then((data) => {
+                if (data.message) {
+                    res.status(404).send(data)
+                }
+                res.status(200).send(data)
+            }).catch(err => {
+                util.writeLog(`${err} -> getAssetForEdit Error`, 'get:/Asset/getAssetForEdit');
+                let error = new Error();
+                error.success = false;
+                error.status = 404;
+                error.message = 'Asset not found ';
+                res.send(error);
+            })
+        } else {
+            util.writeLog(`getAssetForEdit Error`, 'get:/Asset/getAssetForEdit/:id');
+            var error = new Error();
             error.success = false;
             error.status = 404;
             error.message = 'Asset not found ';
             res.send(error);
-        })
-    } else {
-        util.writeLog(`getAssetForEdit Error`, 'get:/Asset/getAssetForEdit/:id');
+        }
+    } catch (err) {
+        util.writeLog(`${err} -> getAssetForEdit Error`, 'get:/Asset/getAssetForEdit/:id');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'Asset not found ';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
     }
 
@@ -304,19 +367,28 @@ router.get('/getAssetForEdit/:id', (req, res) => {
  */
 
 router.put('/updateasset/:id', (req, res) => {
-    let valueObj=req.body
-   delete valueObj._id
-    const vUpdateAsset = assestModel.updateasset('assestdetails', valueObj, req.params.id)
-    vUpdateAsset.then((data) => {
-        res.status(200).send(data)
-    }).catch(err => {
+    try {
+        let valueObj = req.body
+        delete valueObj._id
+        const vUpdateAsset = assestModel.updateasset('assestdetails', valueObj, req.params.id)
+        vUpdateAsset.then((data) => {
+            res.status(200).send(data)
+        }).catch(err => {
+            util.writeLog(`${err} -> updateasset Error`, 'put:/Asset/updateasset/:id');
+            var error = new Error();
+            error.success = false;
+            error.status = 404;
+            error.message = 'Asset not Update ';
+            res.send(error);
+        })
+    } catch (err) {
         util.writeLog(`${err} -> updateasset Error`, 'put:/Asset/updateasset/:id');
         var error = new Error();
         error.success = false;
         error.status = 404;
-        error.message = 'Asset not Update ';
+        error.message = 'An internal error occurred. Please try again later';
         res.send(error);
-    })
-  })
-  
+    }
+})
+
 module.exports = router

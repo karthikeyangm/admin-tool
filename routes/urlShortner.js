@@ -61,7 +61,7 @@ router.post('/shorten', async function (req, res, next) {
 
             let tenantCode = configdata[0].urlCode
             let tenantName= configdata[0].tenantName
-            url = new Url({
+            let url = new Url({
               longUrl,
               shortUrl,
               urlCode,
