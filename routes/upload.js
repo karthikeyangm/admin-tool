@@ -513,6 +513,7 @@ router.post('/configurationUniqId', (req, res) => {
             console.log(dataval.ops)
             if (err) {
                 console.log(err)
+                res.send(err)
             }
             res.send(dataval.ops[0])
         })
