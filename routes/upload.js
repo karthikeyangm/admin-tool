@@ -509,6 +509,8 @@ router.post('/configurationUniqId', (req, res) => {
     let db = global.db;
     try {
         db.collection('configurationUniqId').insertOne({ configurationStep: "1" }, (err, dataval) => {
+            console.log(err)
+            console.log(dataval.ops)
             if (err) {
                 console.log(err)
             }
