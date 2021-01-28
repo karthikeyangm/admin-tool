@@ -88,7 +88,7 @@ module.exports = {
             try {
 
                 var decipher = crypto.createDecipher(algorithm, key);
-                decrypted = JSON.parse(decipher.update(data.id, 'hex', 'utf8') + decipher.final('utf8'));
+               let decrypted = JSON.parse(decipher.update(data.id, 'hex', 'utf8') + decipher.final('utf8'));
                 db.collection(collectionName).find({
                     email: decrypted[0].email,
                     resetToken: data.id, forgot_verified: true, user_randomChar: decrypted[0].tenant_randomChar

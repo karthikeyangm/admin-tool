@@ -77,8 +77,10 @@ router.get('/:code', async (req, res) => {
  */
 
 router.get('/login/:code', async (req, res) => {
-  try {
-    const url = await UrlTenant.findOne({ urlCode: req.params.code });
+  try { 
+    let db = global.db;
+    // const url = await UrlTenant.findOne({ urlCode: req.params.code });
+    const url = await db.collection('TenantDetails').findOne({ urlCode: req.params.code });
 
     if (url) {
       return res.redirect(url.Tenant_Url);

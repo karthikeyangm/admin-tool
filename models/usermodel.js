@@ -60,7 +60,7 @@ module.exports = {
                                                                 data: dataval.ops[0]
                                                             }
                                                             if (aa + 1 == data.SelectedGroup.length) {
-                                                                tenantModel.updateOne({ "TenantId": data.TenantId, tenantName: data.tenantName },
+                                                                db.collection('TenantDetails').updateOne({ "TenantId": data.TenantId, tenantName: data.tenantName },
                                                                     { $inc: { userAdded: 1 } }, (err, value) => {
                                                                         if (err) { reject(err); }
                                                                         resolve(result)
@@ -71,10 +71,10 @@ module.exports = {
                                                 })
                                             }
                                         } else {
-                                            tenantModel.updateOne({ "TenantId": data.TenantId, tenantName: data.tenantName },
+                                            db.collection('TenantDetails').updateOne({ "TenantId": data.TenantId, tenantName: data.tenantName },
                                                 { $inc: { userAdded: 1 } }, (err, value) => {
                                                     if (err) { reject(err); }
-                                                    tenantModel.updateOne({ "TenantId": data.TenantId, tenantName: data.tenantName },
+                                                    db.collection('TenantDetails').updateOne({ "TenantId": data.TenantId, tenantName: data.tenantName },
                                                         { $inc: { userAdmin: 1 } }, (err, value) => {
                                                             if (err) { reject(err); }
                                                             let result = {
@@ -232,7 +232,7 @@ module.exports = {
                                     reject(err)
                                 }
 
-                                tenantModel.updateOne({ "TenantId": data.TenantId, tenantName: data.tenantName },
+                                db.collection('TenantDetails').updateOne({ "TenantId": data.TenantId, tenantName: data.tenantName },
                                     { $inc: { userAdded: -1 } }, (err, value) => {
                                         if (err) { reject(err); }
                                         let result = {
@@ -404,7 +404,7 @@ module.exports = {
     excellUploadValidation: (collectionName, data, req) => {
         return new Promise((resolve, reject) => {
             let db = global.db;
-            var TotalExcelldata = data;
+            // var TotalExcelldata = data;
 
             var TenantDetail = ""
             if (req.query.tendetail == undefined) {
@@ -557,7 +557,7 @@ module.exports = {
                                                                 $push: { userIds: ObjectID(dataval.ops[0]._id) }
                                                             }, (err, resval) => {
                                                                 if (err) { reject(err); }
-                                                                tenantModel.updateOne({ "TenantId": decrypted[0].tenantId, tenantName: decrypted[0].tenantname },
+                                                                db.collection('TenantDetails').updateOne({ "TenantId": decrypted[0].tenantId, tenantName: decrypted[0].tenantname },
                                                                     { $inc: { userAdded: 1 } }, (err, value) => {
                                                                         if (err) { reject(err); }
                                                                         loop++
@@ -678,8 +678,8 @@ module.exports = {
                     db.collection(collectionName).insertOne(data, (err, dataval) => {
                         if (err) {
                             reject(err)
-                        }
-                        SubscribersDetails_model.create(data, (err, value) => {
+                        }                        
+                        db.collection('SubscribersDetails').create(data, (err, value) => {
                             if (err) {
                                 reject(err)
                             }
@@ -700,7 +700,7 @@ module.exports = {
                         if (err) {
                             reject(err)
                         }
-                        SubscribersDetails_model.updateMany({ userId: data.userId },
+                        db.collection('SubscribersDetails').updateMany({ userId: data.userId },
                             {
                                 $set: data
                             }, (err, value) => {
@@ -757,7 +757,7 @@ module.exports = {
                                                 $push: { userIds: ObjectID(dataval.ops[0]._id) }
                                             }, (err, resval) => {
                                                 if (err) { reject(err); }
-                                                tenantModel.updateOne({ "TenantId": data.TenantId, tenantName: data.tenantName },
+                                                db.collection('TenantDetails').updateOne({ "TenantId": data.TenantId, tenantName: data.tenantName },
                                                     { $inc: { userAdded: 1 } }, (err, value) => {
                                                         if (err) { reject(err); }
                                                        

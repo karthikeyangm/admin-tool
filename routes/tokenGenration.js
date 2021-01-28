@@ -37,7 +37,6 @@ const refreshTokens = {};
 
 
 router.post('/token', function (req, res, next) {
-  console.log(global.db)
   try {
     var data = req.body;
     if (!data.username || !data.password) {
@@ -102,7 +101,9 @@ router.post('/token', function (req, res, next) {
 
 router.post('/shortUrl', async (req, res) => {
   try {
-    const url = await UrlTenant.findOne({ urlCode: req.body.shortId });
+    let db = global.db;
+    // const url = await UrlTenant.findOne({ urlCode: req.body.shortId });
+    const url = await db.collection('TenantDetails').findOne({ urlCode: req.body.shortId });
 
     if (url) {
       let result = {
