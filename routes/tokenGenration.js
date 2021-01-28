@@ -37,6 +37,7 @@ const refreshTokens = {};
 
 
 router.post('/token', function (req, res, next) {
+  console.log(global.db)
   try {
     var data = req.body;
     if (!data.username || !data.password) {
