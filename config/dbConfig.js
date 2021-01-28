@@ -7,6 +7,8 @@ var express = require('express');
 var app = express();
 const crypto = require("crypto").randomBytes(256).toString('hex')
 const mongoose = require('mongoose');
+
+var MongoClient = require('mongodb').MongoClient;
 var db;
 var initialized = false;
 
@@ -34,13 +36,17 @@ function initialize(database, host,callback) {
 function openMongo(callback,host) {
     var url = 'mongodb://napp:neTabPq5rt@mongodb/NetApp';
 //    var url='mongodb+srv://elearning:Elearning321@cluster0.nzqy8.mongodb.net/TenantMaster?retryWrites=true&w=majority'
-    mongoose.connect(url, {
-        useCreateIndex: true, useNewUrlParser: true,useUnifiedTopology: true
+  //  mongoose.connect(url, {
+   //     useCreateIndex: true, useNewUrlParser: true,useUnifiedTopology: true
+    //}, (err, client) => {
+        MongoClient.connect(url, { useUnifiedTopology: true, useNewUrlParser: true
     }, (err, client) => {
         if (err) {
             console.log("connection refused")
         } else {
-            db = client.db//(process.env.DB);        
+           // db = client.db//(process.env.DB);     
+            
+            db = client.db(process.env.DB);
             global.db = db;
             global.clients={}
             global.clientdbconn={}
