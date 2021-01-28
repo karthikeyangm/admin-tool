@@ -50,6 +50,7 @@ function openMongo(callback,host) {
             global.db = db;
             global.clients={}
             global.clientdbconn={}
+            console.log( global.db)
             console.log("database connected "+ process.env.DB)
         }
     })
