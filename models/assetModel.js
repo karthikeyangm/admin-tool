@@ -16,7 +16,7 @@ module.exports = {
     getAllassetCategory: (collectionName, data) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
-            db.collection(collectionName).find().sort({title:1}).toArray((err, res) => {
+            db.collection(collectionName).find().toArray((err, res) => {
                 if (err) {
                     reject(err)
                 }
@@ -32,7 +32,7 @@ module.exports = {
       getAllassetViewMode: (collectionName, data) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
-            db.collection(collectionName).find().toArray((err, res) => {
+            db.collection(collectionName).find().sort({ViewMode:1}).toArray((err, res) => {
                 if (err) {
                     reject(err)
                 }
@@ -48,7 +48,7 @@ module.exports = {
       getAllassetInventoryItemKeyName: (collectionName, data) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
-            db.collection(collectionName).find(data).toArray((err, res) => {
+            db.collection(collectionName).find(data).sort({InventoryItemKeyName:1}).toArray((err, res) => {
                 if (err) {
                     reject(err)
                 }
@@ -64,7 +64,7 @@ module.exports = {
       getAllassetModelDetails: (collectionName, data) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
-            db.collection(collectionName).find(data).toArray((err, res) => {
+            db.collection(collectionName).find(data).sort({ModelDetails:1}).toArray((err, res) => {
                 if (err) {
                     reject(err)
                 }
@@ -87,7 +87,6 @@ module.exports = {
                 if (err) { reject(err) }
                 else {
                     var dataenc = dataval.ops
-                    console.log(dataval.ops)
                     encryptData()
                     function encryptData() {
                         var cipher = crypto.createCipher(process.env.cryptoalgorithm, process.env.cryptokey);
@@ -156,6 +155,14 @@ module.exports = {
             })
         })
     },
+    /**
+       * updateasset method used to update the specific asset.
+       * @param  {string} collectionName Its show the collection name.
+       * @param  {string} data Its contain specific asset data.
+       * @param  {string} id Its contain specific asset id.
+       * @return {Object} Its return success or failure message.
+       */
+
     updateasset: (collectionName, data, id) => {
         
         let db = global.db;
@@ -173,7 +180,6 @@ module.exports = {
                 var dataenc =[newData]
                     encryptData()
                     function encryptData() {
-                        console.log(id)
                         var cipher = crypto.createCipher(process.env.cryptoalgorithm, process.env.cryptokey);
                         var encrypted = cipher.update(JSON.stringify(dataenc), 'utf8', 'hex') + cipher.final('hex');
                         const dataCheck = (encrypted.toString()).includes('/');

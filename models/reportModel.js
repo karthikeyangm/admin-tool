@@ -75,7 +75,7 @@ module.exports = {
     getUserbasedScenarioList: (collectionName, data) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
-            db.collection(collectionName).find({ SelectedGroup: { $in: data.SelectedGroup } }).toArray((err, res) => {
+            db.collection(collectionName).find({ SelectedGroup: { $in: data.SelectedGroup } }).sort({ Title: 1 }).toArray((err, res) => {
                 if (err) { reject(err) }
                 if (res.length == 0) {
                     let result = {
@@ -142,7 +142,6 @@ module.exports = {
                         updatedBy: 0, shortUrl: 0,
                     }
                 }).toArray((err, resdata) => {
-                    console.log(resdata)
                     if (err) { reject(err) }
                     if (resdata.length == 0) {
                         let result = {

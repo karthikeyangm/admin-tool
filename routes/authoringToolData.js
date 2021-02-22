@@ -14,7 +14,6 @@ const { db } = require('../models/Url');
 
 router.post('/authoringData', async (req, res) => {
     try {
-        console.log(req.body['json'])
         var jsonData = JSON.parse(req.body['json'])
         let db = global.db;
         // jsonData['assetID']=ObjectID(jsonData.assetID)
@@ -40,13 +39,15 @@ router.post('/authoringData', async (req, res) => {
                 const deeplink = process.env.baseUrl + '#/pages/scenario-test/' + encryptedvalueResult
                 db.collection('scenarios').find({ _id: ObjectID(jsonData.scenarioID) }).toArray((err, sceData) => {
                     if (err) {
-                        console.log(err)
+                        util.writeLog(`${err} -> shorten Error`, 'get:/urlshort/scenarios-err');
+                        res.status(500).json('Server error');
                     } else {
                         if (sceData.length > 0) {
                             let valueData = jsonData
                             db.collection('scenarios').updateOne({ _id: ObjectID(jsonData.scenarioID) }, { $set: valueData }, (err, updateStatus) => {
                                 if (err) {
-                                    console.log(err)
+                                    util.writeLog(`${err} -> shorten Error`, 'get:/urlshort/scenarios');
+                                    res.status(500).json('Server error');
                                 }
                                 const longurldata = {
                                     longUrl: deeplink,
@@ -125,7 +126,6 @@ router.post('/authoringData', async (req, res) => {
                                                                         };
                                                                         db.collection('subscribers').find({ userId: { $in: userIdData } }).toArray((err, subscriptions) => {
                                                                             if (err) {
-                                                                                console.error(`Error occurred while getting subscriptions`);
                                                                                 res.status(500).json({
                                                                                     error: 'Technical error occurred'
                                                                                 });
@@ -164,7 +164,6 @@ router.post('/authoringData', async (req, res) => {
                                                                                                 data: value
                                                                                             });
                                                                                         }).catch((err) => {
-                                                                                            console.log(err)
                                                                                             reject({
                                                                                                 status: false,
                                                                                                 endpoint: subscription.endpoint,
@@ -174,7 +173,6 @@ router.post('/authoringData', async (req, res) => {
                                                                                     });
                                                                                 });
                                                                                 q.allSettled(parallelSubscriptionCalls).then((pushResults) => {
-                                                                                    console.info(pushResults);
                                                                                 });
 
                                                                                 db.collection('scenarios').updateMany({ "_id": ObjectID(ScenarioId) },
@@ -189,7 +187,7 @@ router.post('/authoringData', async (req, res) => {
                                                                                                     let emailId = mailAddress
                                                                                                     let subject = `${dataValue.Title} scenario added`
                                                                                                     let message = `${dataValue.Information} scenariod added by Admin.`
-                                                                                                                                     
+
                                                                                                     let htmlMsg = `Hi,<br><br> The scenario <strong>(${dataValue.Title})</strong> is creadted by admin.
                                                                                                     So please <a href="${shortUrl}">click here</a> to access the scenario.
                                                                                                     <br/><br>Thanks,<br>- Admin<br><br>`
@@ -224,7 +222,7 @@ router.post('/authoringData', async (req, res) => {
                                     res.status(401).json('Invalid long url');
                                 }
                             })
-                        }else{
+                        } else {
                             res.status(401).json('Scenario not found');
                         }
                     }
@@ -235,17 +233,20 @@ router.post('/authoringData', async (req, res) => {
         } else {
             db.collection('scenarios').find({ _id: ObjectID(jsonData.scenarioID) }).toArray((err, data) => {
                 if (err) {
-                    console.log(err)
+                    util.writeLog(`${err} -> shorten Error`, 'get:/urlshort/scenarios-else');
+                    res.status(500).json('Server error');
                 } else {
                     if (data.length > 0) {
                         let valueData = jsonData
                         db.collection('scenarios').updateOne({ _id: ObjectID(jsonData.scenarioID) }, { $set: valueData }, (err, updateStatus) => {
                             if (err) {
-                                console.log(err)
+                                util.writeLog(`${err} -> shorten Error`, 'get:/urlshort/scenarios-else');
+                                res.send(err)
+                            }else{
+                                res.send(updateStatus)
                             }
-                            res.send(updateStatus)
                         })
-                    }else{
+                    } else {
                         res.status(401).json('Scenario not found');
                     }
                 }

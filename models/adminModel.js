@@ -1,4 +1,10 @@
 
+/**
+ * AdminDetails module to contain schema details
+ * @module AdminDetails
+ * @see {@link admin_TenantDetails}
+ */
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 

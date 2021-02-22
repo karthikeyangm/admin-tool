@@ -91,7 +91,7 @@ router.post('/getAllScenario_Limit', (req, res) => {
  * Sends a HTTP GET request to get specific scenario based on user.
  * </br> 
  * @function getUserScenario
- * @path {GET} path /scenario/getAllScenario_Limit
+ * @path {GET} path /scenario/getUserScenario
  * @param req {Object} The req object represents the HTTP request.
  * @param res {Object} The res object represents the HTTP response.
  * @param req.params.id {String} The JSON payload. 
@@ -127,7 +127,7 @@ router.get('/getUserScenario/:id', (req, res) => {
  * Sends a HTTP GET request to get specific scenario based on pagination count and user details.
  * </br> 
  * @function getUserScenario_Limit
- * @path {GET} path /scenario/getAllScenario_Limit
+ * @path {GET} path /scenario/getUserScenario_Limit
  * @param req {Object} The req object represents the HTTP request.
  * @param res {Object} The res object represents the HTTP response.
  * @param req.body {Object} The JSON payload. Its contain senario limit.
@@ -142,7 +142,6 @@ router.post('/getUserScenario_Limit', (req, res) => {
     const ScenarioLimit = req.body
     const vGetAllScenario = scenariomodel.getUserScenario_limit('scenarios', ScenarioLimit)
     vGetAllScenario.then((data) => {
-      console.log(data)
       res.status(200).send(data)
     }).catch(err => {
       util.writeLog(`${err} -> get scenario getUserScenario_Limit Error`, 'get:/scenario/getUserScenario_Limit');

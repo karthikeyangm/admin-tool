@@ -377,7 +377,6 @@ router.post('/VerifyTokenDetails', async (req, res) => {
         if (req.body.role !== '1') {
           var ScenarioData = usermodel.CheckScenarioForUser('groupinfo', Scenariovalue)
           ScenarioData.then(function (data) {
-            console.log(data)
             if (data.length > 0) {
               let result = {
                 success: true,
@@ -574,7 +573,6 @@ router.post('/popupmsg', (req, res) => {
   db.collection('subscribers').find().toArray((err, subscriptions) => {
     // Subscription.find({}, (err, subscriptions) => {
     if (err) {
-      console.error(`Error occurred while getting subscriptions`);
       res.status(500).json({
         error: 'Technical error occurred'
       });
@@ -621,7 +619,6 @@ router.post('/popupmsg', (req, res) => {
         });
       });
       q.allSettled(parallelSubscriptionCalls).then((pushResults) => {
-        console.info(pushResults);
       });
       res.json({
         data: 'Push triggered'

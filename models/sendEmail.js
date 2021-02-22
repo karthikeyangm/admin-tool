@@ -18,7 +18,6 @@ module.exports = {
     * @return {Object} Its return success or failure message.
     */
     sendMailModel: (maillist, subject, message,htmlMsg) => {
-        let db = global.db;
         return new Promise((resolve, reject) => {
 
             var transporter = nodemailer.createTransport({
@@ -40,10 +39,8 @@ module.exports = {
                 mailOptions.to = to
                 transporter.sendMail(mailOptions, function (error, info) {
                     if (error) {
-                        console.log(error);
                         reject(error)
                     } else {
-                        console.log('Email sent: ' + info.response);
                         if (i === maillist.length - 1) {
                             resolve(info.response)
                         }

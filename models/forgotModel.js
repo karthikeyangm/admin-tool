@@ -24,8 +24,8 @@ module.exports = {
         let db = global.db;
         return new Promise((resolve, reject) => {
             try {
-                let vEmailid=data
-                db.collection(collectionName).find({ username:vEmailid }).toArray((err, res) => {
+                let vEmailid = data
+                db.collection(collectionName).find({ username: vEmailid }).toArray((err, res) => {
                     if (err) {
                         reject(err)
                     }
@@ -50,7 +50,7 @@ module.exports = {
                                         resetToken: encrypted,
                                         user_randomChar: tenantId_data,
                                         forgot_verified: true,
-                                        forgotLink_verified:0
+                                        forgotLink_verified: 0
                                     }
                                 }, (err, res) => {
                                     if (err) {
@@ -82,13 +82,20 @@ module.exports = {
 
     },
 
+    /**
+    * validateId method used to identify the user is valid or not.
+    * @param  {string} collectionName Its show the collection name.
+    * @param  {string} data Its contains user data.
+    * @return {Object} Its return success or failure message based on data.
+    */
+
     validateId: (collectionName, data) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
             try {
 
                 var decipher = crypto.createDecipher(algorithm, key);
-               let decrypted = JSON.parse(decipher.update(data.id, 'hex', 'utf8') + decipher.final('utf8'));
+                let decrypted = JSON.parse(decipher.update(data.id, 'hex', 'utf8') + decipher.final('utf8'));
                 db.collection(collectionName).find({
                     email: decrypted[0].email,
                     resetToken: data.id, forgot_verified: true, user_randomChar: decrypted[0].tenant_randomChar
@@ -96,13 +103,15 @@ module.exports = {
                     if (err) {
                         reject(err)
                     }
-                    db.collection(collectionName).updateOne({  email: decrypted[0].email,
-                        resetToken: data.id, forgot_verified: true, user_randomChar: decrypted[0].tenant_randomChar,forgotLink_verified:0 }, {
+                    db.collection(collectionName).updateOne({
+                        email: decrypted[0].email,
+                        resetToken: data.id, forgot_verified: true, user_randomChar: decrypted[0].tenant_randomChar, forgotLink_verified: 0
+                    }, {
                         $set: {
                             resetToken: null,
                             user_randomChar: null,
                             forgot_verified: false,
-                            forgotLink_verified:1
+                            forgotLink_verified: 1
                         }
                     }, (err, res) => {
                         if (err) {
@@ -118,19 +127,28 @@ module.exports = {
             }
         })
     },
+
+    /**
+    * updatePassword method used to update the user passsword.
+    * @param  {string} collectionName Its show the collection name.
+    * @param  {string} data Its contains user data.
+    * @return {Object} Its return success or failure message based on data.
+    */
+
+
     updatePassword: (collectionName, data) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
-            db.collection(collectionName).updateOne({ email: data.email, forgotLink_verified:1 }, {
+            db.collection(collectionName).updateOne({ email: data.email, forgotLink_verified: 1 }, {
                 $set: {
                     password: data.password,
-                    forgotLink_verified:0
+                    forgotLink_verified: 0
                 }
             }, (err, res) => {
                 if (err) {
                     reject(err)
                 }
-                let result={
+                let result = {
                     success: true,
                     status: 200,
                     message: 'Password Updated Successfull'
@@ -140,19 +158,27 @@ module.exports = {
         })
     },
 
+    /**
+    * changePasswordFirstLogin method used to update the user passsword on first time login.
+    * @param  {string} collectionName Its show the collection name.
+    * @param  {string} data Its contains user data.
+    * @return {Object} Its return success or failure message based on data.
+    */
+
+
     changePasswordFirstLogin: (collectionName, data) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
-            db.collection(collectionName).updateOne({ email: data.email, firstLogin:1 }, {
+            db.collection(collectionName).updateOne({ email: data.email, firstLogin: 1 }, {
                 $set: {
                     password: data.password,
-                    firstLogin:0
+                    firstLogin: 0
                 }
             }, (err, res) => {
                 if (err) {
                     reject(err)
                 }
-                let result={
+                let result = {
                     success: true,
                     status: 200,
                     message: 'Password Updated Successfully.'
@@ -161,6 +187,16 @@ module.exports = {
             })
         })
     },
+
+    /**
+     * profilePasswordUpdate method used to update the user profile passsword.
+     * @param  {string} collectionName Its show the collection name.
+     * @param  {string} data Its contains user data.
+     * @return {Object} Its return success or failure message based on data.
+     */
+
+
+
     profilePasswordUpdate: (collectionName, data) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
@@ -172,7 +208,7 @@ module.exports = {
                 if (err) {
                     reject(err)
                 }
-                let result={
+                let result = {
                     success: true,
                     status: 200,
                     message: 'Password Updated Successfull'
@@ -181,6 +217,6 @@ module.exports = {
             })
         })
     }
-    
+
 
 }

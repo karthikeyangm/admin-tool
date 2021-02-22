@@ -221,7 +221,6 @@ router.post('/getAllassetInventoryItemKeyName', (req, res) => {
  */
 router.post('/getAllassetModelDetails', (req, res) => {
     try {
-        console.log(req.body)
         const vGetAllModelDetails = assestModel.getAllassetModelDetails('modelDetails', req.body)
         vGetAllModelDetails.then((data) => {
             if (data.length > 0) {

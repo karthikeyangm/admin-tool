@@ -1,4 +1,10 @@
 
+/**
+ * TenantDetails module to contain schema details
+ * @module TenantDetails
+ * @see {@link TenantDetails}
+ */
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 

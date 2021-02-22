@@ -288,7 +288,7 @@ module.exports = {
                     }
                 }
             }
-            db.collection(collectionName).find(query).skip(parseInt(userLimit.start_user)).
+            db.collection(collectionName).find(query).collation({locale: "en" }).skip(parseInt(userLimit.start_user)).
                 limit(parseInt(userLimit.end_user)).sort({ firstname: 1 }).toArray((err, res) => {
                     if (err) {
                         reject(err)

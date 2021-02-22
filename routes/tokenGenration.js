@@ -63,7 +63,6 @@ router.post('/token', function (req, res, next) {
       createdAt: new Date(),
       updatedAt: new Date(),
     };
-    console.log(userStore)
     const vCreateUser = usermodel.validateUser('users', userStore)
     vCreateUser.then((data) => {
       if (data.response.length > 0) {

@@ -36,10 +36,8 @@ var storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         const vName = file.originalname.split('.')
-        console.log(req.query.type)
         if (req.query.type == 'uploadcommand'||req.query.type == 'guidefiles') {
             let filenameNew = (file.originalname).split('.');
-            console.log(filenameNew)
             cb(null, filenameNew[0] + '-' + Date.now() + '.' + vName[vName.length - 1])
         } else {
             cb(null, file.originalname)
@@ -56,7 +54,6 @@ var storage = multer.diskStorage({
 var upload = multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
-        console.log(file)
         if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" ||
          file.mimetype == 'application/octet-stream'|| file.mimetype== 'application/pdf') {
             cb(null, true);
@@ -83,7 +80,6 @@ var upload = multer({
 router.post('/uploadfile', upload.single('File'), (req, res, next) => {
     try {
         const file = req.file
-        console.log(file)
         if (!file) {
             const error = {
                 status: false
@@ -112,7 +108,6 @@ router.post('/uploadfile', upload.single('File'), (req, res, next) => {
                 }
                 file['path'] = process.env.baseUrl + ret
             }
-            console.log(file)
             res.status(200).send(file);
         }
     } catch (err) {
@@ -203,7 +198,6 @@ router.get('/getthumbnailData', (req, res) => {
         var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
         let decrypted = JSON.parse(decipher.update(req.query.id, 'hex', 'utf8') + decipher.final('utf8'));
         var vSplitData = (decrypted[0].thumbnailImgPath).split(process.env.baseUrl);
-        console.log(vSplitData)
         if (os.type() == 'Windows_NT') {
             let p = path.join(__dirname, `../${vSplitData[1]}`);
             res.sendFile(p);
@@ -226,13 +220,11 @@ router.get('/getthumbnailData/:id', (req, res) => {
     try {
         db.collection('assestdetails').find({ _id: ObjectID(req.params.id) }).toArray((err, resdata) => {
             try {
-                if (err) {
-                    console.log(err)
+                if (err) {  res.send(err)
                 }
                 var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
                 let decrypted = JSON.parse(decipher.update(resdata[0].asset_encrypt, 'hex', 'utf8') + decipher.final('utf8'));
                 var vSplitData = (decrypted[0].thumbnailImgPath).split(process.env.baseUrl);
-                console.log(vSplitData)
                 if (os.type() == 'Windows_NT') {
                     let p = path.join(__dirname, `../${vSplitData[1]}`);
                     res.sendFile(p);
@@ -262,7 +254,6 @@ router.get('/getthumbnailData/:id', (req, res) => {
 router.get('/getbundelData', (req, res) => {
     let db = global.db;
     try {
-        console.log(req.query.id)
         let queryStrValue = (req.query.id).includes("?")
         var valueData = ''
         if (queryStrValue) {
@@ -270,11 +261,9 @@ router.get('/getbundelData', (req, res) => {
         } else {
             valueData = req.query.id
         }
-        console.log(valueData)
         db.collection('assestdetails').find({ _id: ObjectID(valueData) }).toArray((err, resdata) => {
             try {
-                if (err) {
-                    console.log(err)
+                if (err) {  res.send(err)
                 }
                 var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
                 let decrypted = JSON.parse(decipher.update(resdata[0].asset_encrypt, 'hex', 'utf8') + decipher.final('utf8'));
@@ -310,8 +299,7 @@ router.get('/getbundelData/:id', (req, res) => {
     try {
         db.collection('assestdetails').find({ _id: ObjectID(req.params.id) }).toArray((err, resdata) => {
             try {
-                if (err) {
-                    console.log(err)
+                if (err) {  res.send(err)
                 }
                 var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
                 let decrypted = JSON.parse(decipher.update(resdata[0].asset_encrypt, 'hex', 'utf8') + decipher.final('utf8'));
@@ -344,20 +332,17 @@ router.get('/getbundelData/:id', (req, res) => {
     }
 
 })
+
 router.get('/getmanifestData', (req, res) => {
     let db = global.db;
     try {
         db.collection('assestdetails').find({ _id: ObjectID(req.query.id) }).toArray((err, resdata) => {
             try {
-                console.log("==============")
-                if (err) {
-                    console.log(err)
+                if (err) {  res.send(err)
                 }
                 var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
                 let decrypted = JSON.parse(decipher.update(resdata[0].asset_encrypt, 'hex', 'utf8') + decipher.final('utf8'));
-                console.log(req.query.id)
                 var vSplitData = (decrypted[0].manifestPath).split(process.env.baseUrl);
-                console.log(vSplitData)
                 if (os.type() == 'Windows_NT') {
                     let p = path.join(__dirname, `../${vSplitData[1]}`);
                     res.sendFile(p);
@@ -383,19 +368,17 @@ router.get('/getmanifestData', (req, res) => {
         res.send(error);
     }
 })
+
 router.get('/getmanifestData/:id', (req, res) => {
     let db = global.db;
     try {
-        console.log(req.params.id)
         db.collection('assestdetails').find({ _id: ObjectID(req.params.id) }).toArray((err, resdata) => {
             try {
-                if (err) {
-                    console.log(err)
+                if (err) {  res.send(err)
                 }
                 var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
                 let decrypted = JSON.parse(decipher.update(resdata[0].asset_encrypt, 'hex', 'utf8') + decipher.final('utf8'));
                 var vSplitData = (decrypted[0].manifestPath).split(process.env.baseUrl);
-                console.log(vSplitData)
                 if (os.type() == 'Windows_NT') {
                     let p = path.join(__dirname, `../${vSplitData[1]}`);
                     res.sendFile(p);
@@ -429,15 +412,11 @@ router.get('/getcabelData/:id', (req, res) => {
     try {
         db.collection('assestdetails').find({ _id: ObjectID(req.params.id) }).toArray((err, resdata) => {
             try {
-                if (err) {
-                    console.log(err)
+                if (err) {  res.send(err)
                 }
                 var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
                 let decrypted = JSON.parse(decipher.update(resdata[0].asset_encrypt, 'hex', 'utf8') + decipher.final('utf8'));
-                console.log(decrypted)
-                console.log(decrypted[0].cablePath)
                 var vSplitData = (decrypted[0].cablePath).split(process.env.baseUrl);
-                console.log(vSplitData)
                 if (os.type() == 'Windows_NT') {
                     let p = path.join(__dirname, `../${vSplitData[1]}`);
                     res.sendFile(p);
@@ -471,13 +450,11 @@ router.get('/getcabelData', (req, res) => {
         db.collection('assestdetails').find({ _id: ObjectID(req.query.id) }).toArray((err, resdata) => {
             try {
                 if (err) {
-                    console.log(err)
+                    res.send(err)
                 }
                 var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
                 let decrypted = JSON.parse(decipher.update(resdata[0].asset_encrypt, 'hex', 'utf8') + decipher.final('utf8'));
-                console.log(req.query.id)
                 var vSplitData = (decrypted[0].cablePath).split(process.env.baseUrl);
-                console.log(vSplitData)
                 if (os.type() == 'Windows_NT') {
                     let p = path.join(__dirname, `../${vSplitData[1]}`);
                     res.sendFile(p);
@@ -509,10 +486,7 @@ router.post('/configurationUniqId', (req, res) => {
     let db = global.db;
     try {
         db.collection('configurationUniqId').insertOne({ configurationStep: "1" }, (err, dataval) => {
-            console.log(err)
-            console.log(dataval.ops)
             if (err) {
-                console.log(err)
                 res.send(err)
             }
             res.send(dataval.ops[0])

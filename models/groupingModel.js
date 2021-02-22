@@ -161,8 +161,8 @@ module.exports = {
                             _id: { $in: res[0].SelectedGroup }
                         }
                     }
-                    db.collection(collectionName).find(query).skip(parseInt(groupLimit.start_user)).
-                        limit(parseInt(groupLimit.end_user)).toArray((err, resdata) => {
+                    db.collection(collectionName).find(query).collation({locale: "en" }).skip(parseInt(groupLimit.start_user)).
+                        limit(parseInt(groupLimit.end_user)).sort({groupname:1}).toArray((err, resdata) => {
                             if (err) {
                                 reject(err)
                             }

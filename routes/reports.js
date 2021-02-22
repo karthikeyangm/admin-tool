@@ -145,7 +145,6 @@ router.post('/getSenarioBasedReport', (req, res) => {
 router.get('/streamingAssetEndUser', (req, res) => {
     try {
         if (req.query.id) {
-            console.log(req.query.id)
             const getStremingAssetDAta = reportmodel.getStremingAssetDAta('scenarios', (req.query.id))
             getStremingAssetDAta.then((data) => {
                 res.status(200).send(data)
@@ -178,7 +177,6 @@ router.get('/streamingAssetEndUser', (req, res) => {
 router.get('/streamingAssetEndUser/:id', (req, res) => {
     try {
         if (req.params.id) {
-            console.log(req.params.id)
             const getStremingAssetDAta = reportmodel.getStremingAssetDAta('scenarios', (req.params.id))
             getStremingAssetDAta.then((data) => {
                 res.status(200).send(data)

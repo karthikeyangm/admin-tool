@@ -59,10 +59,8 @@ module.exports = {
                     }
                 }
             }
-            console.log(query)
-
-            db.collection(collectionName).find(query).skip(parseInt(ScenarioLimit.start_user)).
-                limit(parseInt(ScenarioLimit.end_user)).toArray((err, res) => {
+            db.collection(collectionName).find(query).collation({locale: "en" }).limit(parseInt(ScenarioLimit.end_user)).
+            skip(parseInt(ScenarioLimit.start_user)).sort({Title:1}).toArray((err, res) => {
                     if (err) {
                         reject(err)
                     }
@@ -265,7 +263,7 @@ module.exports = {
             db.collection(collectionName).find({ Title: data.Title }).toArray((err, res) => {
                 if (err) { reject(err) }
                 if (res.length == 0) {
-                    data['publishFlag']=Number(0)
+                    data['publishFlag']=Number(-1)
                     db.collection(collectionName).insertOne(data, (err, dataval) => {
                         if (err) { reject(err) }
                         else {
