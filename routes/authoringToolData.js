@@ -15,6 +15,7 @@ const { db } = require('../models/Url');
 router.post('/authoringData', async (req, res) => {
     try {
         var jsonData = JSON.parse(req.body['json'])
+        console.log(jsonData)
         let db = global.db;
         // jsonData['assetID']=ObjectID(jsonData.assetID)
         if (jsonData.publishFlag == 1) {

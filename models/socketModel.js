@@ -164,6 +164,7 @@ exports.setAssestBundle_details = (socket, io, data) => {
  */
 
 exports.addEndUserResult = (io, collectionName, data) => {
+  console.log(data)
   try {
     let db = global.db;
     if (data.scenarioName != null) {
@@ -190,15 +191,22 @@ exports.addEndUserResult = (io, collectionName, data) => {
       }
       let vAttemptData = []
       let warrningCount = 0
+      console.log(data.attemptData.configurationCount)
       for (let i = 0; i < Number(data.attemptData.configurationCount); i++) {
         let dataextrastep = 0
         if (data.attemptData.extraSteps[i] !== undefined) {
           dataextrastep = data.attemptData.extraSteps[i]
           warrningCount += data.attemptData.extraSteps[i]
         }
+
+        var vconfigurationNameList=`Configuration ${i + 1}`
+        if(data.attemptData.configurationNameList!=undefined){
+          vconfigurationNameList=data.attemptData.configurationNameList[i]
+        }
+
         vAttemptData.push({
           // step: `Configuration ${i + 1}`,
-          step: data.attemptData.configurationNameList[i],
+          step: vconfigurationNameList,//data.attemptData.configurationNameList[i],
           timeTaken: Number(data.attemptData.timeTakenList[i]),
           attemptsCount: Number(data.attemptData.attemptsCountList[i]),
           extraSteps: Number(dataextrastep)
@@ -255,6 +263,7 @@ exports.addEndUserResult = (io, collectionName, data) => {
 
     }
   } catch (e) {
+    console.log(e)
     util.writeLog(`${e} -> addEndUserResult`, 'socket io addEndUserResult');
   }
 

@@ -225,37 +225,50 @@ router.delete('/deletescenario/:id', (req, res) => {
 router.post('/createScenario', (req, res) => {
   try {
     var data = req.body;
+    
+    if (data.Title && data.Information) {
+      if (data.SelectedGroup != undefined) {
 
-    if (data.SelectedGroup != undefined) {
-      for (var i = 0; i < data.SelectedGroup.length; i++) {
-        data.SelectedGroup[i] = ObjectID(data.SelectedGroup[i]);
+          for (var i = 0; i < data.SelectedGroup.length; i++) {
+            data.SelectedGroup[i] = ObjectID(data.SelectedGroup[i]);
+          }
+    
+        var userStore = {};
+        userStore = {
+          Title: data.Title,
+          Information: data.Information,
+          createdAt: new Date(),
+          createdBy: ObjectID(data.createdBy),
+          SelectedGroup: data.SelectedGroup || []
+        };
+        const CreateScenario = scenariomodel.CreateScenario('scenarios', userStore)
+        CreateScenario.then((datasuccessorfailure) => {
+          res.status(200).send(datasuccessorfailure)
+        }).catch(err => {
+          var error = new Error();
+          util.writeLog(`${err} -> create Scenario Error`, 'post:/scenario/createScenario');
+          error.success = false;
+          error.status = 404;
+          error.message = 'Scenario not created';
+          res.send(error);
+        })
+
+      } else {
+        var error = new Error();
+        util.writeLog(`Scenario not created. All fields are required.`, 'post:/scenario/createScenario');
+        error.success = false;
+        error.status = 404;
+        error.message = 'Scenario not created. All fields are required.';
+        res.send(error);
       }
-    }
-
-    var userStore = {};
-
-    userStore = {
-      // Title: 'data.Title',
-      // Information: 'data.Information',
-
-      Title: data.Title,
-      Information: data.Information,
-      createdAt: new Date(),
-      createdBy: ObjectID(data.createdBy),
-      SelectedGroup: data.SelectedGroup || []
-      // SelectedGroup: [ObjectID('5e5cb4df88e672ff4c61a9fd')]
-    };
-    const CreateScenario = scenariomodel.CreateScenario('scenarios', userStore)
-    CreateScenario.then((datasuccessorfailure) => {
-      res.status(200).send(datasuccessorfailure)
-    }).catch(err => {
+    } else {
       var error = new Error();
-      util.writeLog(`${err} -> create Scenario Error`, 'post:/scenario/createScenario');
+      util.writeLog(`Scenario not created. All fields are required.`, 'post:/scenario/createScenario');
       error.success = false;
       error.status = 404;
-      error.message = 'Scenario not created';
+      error.message = 'Scenario not created. All fields are required.';
       res.send(error);
-    })
+    }
   } catch (err) {
     util.writeLog(`${err} -> create Scenario Error`, 'post:/scenario/createScenario');
     var error = new Error();
@@ -312,6 +325,30 @@ router.put('/updatescenario/:id', (req, res) => {
     })
   } catch (err) {
     util.writeLog(`${err} -> Update Scenario Error`, 'put:/scenario/UpdateScenario');
+    var error = new Error();
+    error.success = false;
+    error.status = 404;
+    error.message = 'An internal error occurred. Please try again later';
+    res.send(error);
+  }
+})
+
+router.post('/verifyDeletedScenario', (req, res) => {
+  try {
+    const ScenarioLimit = req.body
+    const vGetAllScenario = scenariomodel.verifyDeletedScenario('scenarios', ScenarioLimit)
+    vGetAllScenario.then((data) => {
+      res.status(200).send(data)
+    }).catch(err => {
+      util.writeLog(`${err} -> verifyDeletedScenario Error`, 'get:/scenario/verifyDeletedScenario');
+      var error = new Error();
+      error.success = false;
+      error.status = 404;
+      error.message = 'scenario not found';
+      res.send(error);
+    })
+  } catch (err) {
+    util.writeLog(`${err} -> verifyDeletedScenario Error`, 'get:/scenario/verifyDeletedScenario');
     var error = new Error();
     error.success = false;
     error.status = 404;

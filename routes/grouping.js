@@ -301,4 +301,45 @@ router.delete('/deleteGroup/:id', (req, res) => {
   }
 })
 
+
+
+
+
+/**
+ * Sends a HTTP Get request to get all groups.
+ * </br> 
+ * @function getDeletedScenarioCount
+ * @function
+ * @path {Get} path /grouping/getDeletedScenarioCount
+ * @param req {Object} The req object represents the HTTP request.
+ * @param res {Object} The res object represents the HTTP response.
+ * @param {Function}  groupingModel.getDeletedScenarioCount() This function is used to get deleted scenario count
+ * @return {Object} Its return success or failure message and get deleted scenario count
+ */
+
+router.get('/getDeletedScenarioCount', (req, res) => {
+  try {
+    const vGetAllScenario = groupingModel.getDeletedScenarioCount('scenarios')
+    vGetAllScenario.then((data) => {
+      console.log(data)
+      res.status(200).send(data)
+    }).catch(err => {
+      util.writeLog(`${err} -> get DeletedScenarioCount Error`, 'get:/groupinfo/getDeletedScenarioCount');
+      var error = new Error();
+      error.success = false;
+      error.status = 404;
+      error.message = 'Scenario not found';
+      res.send(error);
+    })
+  } catch (err) {
+    util.writeLog(`${err} -> get DeletedScenarioCount Error`, 'get:/groupinfo/getDeletedScenarioCount');
+    var error = new Error();
+    error.success = false;
+    error.status = 404;
+    error.message = 'An internal error occurred. Please try again later';
+    res.send(error);
+  }
+})
+
+
 module.exports = router

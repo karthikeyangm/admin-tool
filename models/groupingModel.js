@@ -64,7 +64,7 @@ module.exports = {
             })
         })
     },
-    
+
     /**
     * In getAllgroupinfo method to get all record in grouping collection.
     * @param  {string} collectionName Its show the collection name.
@@ -161,30 +161,30 @@ module.exports = {
                             _id: { $in: res[0].SelectedGroup }
                         }
                     }
-                    db.collection(collectionName).find(query).collation({locale: "en" }).skip(parseInt(groupLimit.start_user)).
-                        limit(parseInt(groupLimit.end_user)).sort({groupname:1}).toArray((err, resdata) => {
+                    db.collection(collectionName).find(query).collation({ locale: "en" }).skip(parseInt(groupLimit.start_user)).
+                        limit(parseInt(groupLimit.end_user)).sort({ groupname: 1 }).toArray((err, resdata) => {
                             if (err) {
                                 reject(err)
                             }
                             if (resdata != null) {
-                                if(resdata.length > 0){
+                                if (resdata.length > 0) {
                                     let result = {
                                         success: true,
                                         status: 200,
                                         data: resdata
                                     }
                                     resolve(result)
-                                }else{
-                                    
-                                let result = {
-                                    success: false,
-                                    status: 403,
-                                    message: "Group not found."
-                                }
-                                resolve(result)
+                                } else {
+
+                                    let result = {
+                                        success: false,
+                                        status: 403,
+                                        message: "Group not found."
+                                    }
+                                    resolve(result)
                                 }
 
-                     
+
                             } else {
                                 let result = {
                                     success: false,
@@ -229,7 +229,7 @@ module.exports = {
             })
         })
     },
-      
+
     /**
     * In updategroupInfo method to get a specific group to update recors based on id. After to update the group id in Users collectioon and Scenario collection basd on selected details.
     * @param  {string} collectionName Its show the collection name.
@@ -370,6 +370,24 @@ module.exports = {
                         }
                     })
                 }
+            })
+        })
+    },
+
+    /**
+    * In getDeletedScenarioCount method to get a specific group.
+    * @param  {string} collectionName Its show the collection name.
+    * @return {Object} Its return success or failure message with count.
+    */
+    getDeletedScenarioCount: (collectionName) => {
+        let db = global.db;
+        return new Promise((resolve, reject) => {
+            db.collection(collectionName).find({ scenarioDelete: 1 }).toArray((err, res) => {
+                if (err) { reject(err) }
+                let result = {
+                    count: res.length
+                }
+                resolve(result)
             })
         })
     },

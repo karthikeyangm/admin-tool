@@ -71,10 +71,10 @@ router.post('/shorten', async function (req, res, next) {
             });
             db.collection('SecnarioShortUrls').insertOne(url, (err, dataval) => {
               db.collection('scenarios').updateMany({ "_id": ObjectID(ScenarioId) },
-              { $set: { shortUrl: shortUrl } }, (err, resData) => {
-                res.json(dataval);
+                { $set: { shortUrl: shortUrl } }, (err, resData) => {
+                  res.json(dataval);
 
-              })
+                })
               // if (dataValue.SelectedGroup != undefined) {
               //   for (var i = 0; i < dataValue.SelectedGroup.length; i++) {
               //     dataValue.SelectedGroup[i] = ObjectID(dataValue.SelectedGroup[i]);
@@ -265,12 +265,23 @@ router.post('/scenarioredirect', async (req, res) => {
     }
 
     if (resdata.length > 0) {
-      let result = {
-        success: true,
-        message: 'success',
-        resdata: resdata
+
+      console.log(resdata)
+      if (resdata[0].scenarioDelete != undefined && resdata[0].scenarioDelete == 1) {
+        let result = {
+          success: false,
+          message: 'No Url Found'
+        }
+        res.json(result)
+      }else{
+        let result = {
+          success: true,
+          message: 'success',
+          resdata: resdata
+        }
+        res.json(result);
+
       }
-      res.json(result);
     } else {
       let result = {
         success: false,

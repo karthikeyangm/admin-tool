@@ -17,7 +17,7 @@ module.exports = {
     getAllScenario: (collectionName, data) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
-            db.collection(collectionName).find().toArray((err, res) => {
+            db.collection(collectionName).find({"scenarioDelete" : {$ne:1}}).toArray((err, res) => {
                 if (err) {
                     reject(err)
                 }
@@ -49,14 +49,15 @@ module.exports = {
     getAllScenario_limit: (collectionName, ScenarioLimit) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
-            let query = {}
+            let query = { scenarioDelete: {$ne:1}}
             if (ScenarioLimit.search_filter) {
                 query = {
                     Title: {
 
                         '$regex': new RegExp("^" + ScenarioLimit.searchValue, "i")
                         // '$regex': ScenarioLimit.searchValue
-                    }
+                    },
+                    scenarioDelete: {$ne:1}
                 }
             }
             db.collection(collectionName).find(query).collation({locale: "en" }).limit(parseInt(ScenarioLimit.end_user)).
@@ -155,17 +156,18 @@ module.exports = {
                                 '$regex': new RegExp("^" + ScenarioLimit.searchValue, "i")
                                 // '$regex': ScenarioLimit.searchValue
                             },
-                            SelectedGroup: { $in: res[0].SelectedGroup }
+                            SelectedGroup: { $in: res[0].SelectedGroup },
+                            scenarioDelete: {$ne:1}
                         }
                     } else {
                         query = {
-                            SelectedGroup: { $in: res[0].SelectedGroup }
+                            SelectedGroup: { $in: res[0].SelectedGroup },
+                            scenarioDelete: {$ne:1}
                         }
                     }
 
 
-                    db.collection(collectionName).find(query).skip(parseInt(ScenarioLimit.start_user)).
-                        limit(parseInt(ScenarioLimit.end_user)).toArray((err, resdata) => {
+                    db.collection(collectionName).find(query).toArray((err, resdata) => {
                             if (err) {
                                 reject(err)
                             }
@@ -227,25 +229,46 @@ module.exports = {
                     }
                     resolve(result)
                 } else {
-                    db.collection(collectionName).deleteOne({ _id: ObjectID(id) }, (err, res) => {
-                        if (err) {
-                            reject(err)
-                        }
-                        db.collection('groupinfo').updateMany({ "scenarioIds": { $in: [ObjectID(id)] } },
-                            { $pull: { scenarioIds: ObjectID(id) } }, (err, resData) => {
-                                if (err) {
-                                    reject(err)
-                                }
-                                else {
+
+                    db.collection(collectionName).updateOne({ _id: ObjectID(id) },
+                        { $set: { scenarioDelete: Number(1) } }, (err, resData) => {
+                            if (err) {
+                                reject(err)
+                            }
+                            else {
+                                db.collection('SecnarioShortUrls').updateOne({ ScenarioId: ObjectID(id) },
+                                { $set: { scenarioDelete: Number(1) } }, (err, resData) => {
                                     let result = {
                                         success: true,
                                         status: 200,
                                         message: "Scenario Deleted successfully!."
                                     }
                                     resolve(result)
-                                }
-                            })
-                    })
+                                })
+                            }
+                        })
+
+                    // db.collection(collectionName).deleteOne({ _id: ObjectID(id) }, (err, res) => {
+                    //     if (err) {
+                    //         reject(err)
+                    //     }
+                    //     db.collection('groupinfo').updateMany({ "scenarioIds": { $in: [ObjectID(id)] } },
+                    //         { $pull: { scenarioIds: ObjectID(id) } }, (err, resData) => {
+                    //             if (err) {
+                    //                 reject(err)
+                    //             }
+                    //             else {
+                    //                 let result = {
+                    //                     success: true,
+                    //                     status: 200,
+                    //                     message: "Scenario Deleted successfully!."
+                    //                 }
+                    //                 resolve(result)
+                    //             }
+                    //         })
+                    // })
+
+
                 }
             })
         })
@@ -260,7 +283,7 @@ module.exports = {
     CreateScenario: (collectionName, data) => {
         let db = global.db;
         return new Promise((resolve, reject) => {
-            db.collection(collectionName).find({ Title: data.Title }).toArray((err, res) => {
+            db.collection(collectionName).find({ Title: data.Title,scenarioDelete: {$ne:1} }).toArray((err, res) => {
                 if (err) { reject(err) }
                 if (res.length == 0) {
                     data['publishFlag']=Number(-1)
@@ -376,5 +399,34 @@ module.exports = {
             })
         })
     },
+
+
+    verifyDeletedScenario:(collectionName, data)=>{
+        let db = global.db;
+        return new Promise((resolve, reject) => {
+            console.log(data)
+            db.collection(collectionName).find({ _id: ObjectID(data.ScenarioId),scenarioDelete:1 }).toArray((err, value) => {
+                if (err) { reject(err) }
+                if(value.length==0){
+                    let result = {
+                        success: true,
+                        status: 200,
+                        data: value.length
+                    }
+                    resolve(result)
+                }else{
+                    let result = {
+                        success: false,
+                        status: 403,
+                        data: value.length
+                    }
+                    resolve(result)
+
+                }
+      
+            })
+        })
+    }
+
 
 }
