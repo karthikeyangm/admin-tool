@@ -65,14 +65,31 @@ app.use(function (req, res, next) {
   res.io = io;
   next();
 })
-// app.use(cors());
+
+var allowedDomains = ['https://admin-tool-gid-workspace.east1.ncloud.netapp.com', 'http://admin-tool-gid-workspace.east1.ncloud.netapp.com'];
 app.use(cors({
-  origin: 'https://admin-tool-gid-workspace.east1.ncloud.netapp.com',
-  // origin: 'http://localhost:4200',
+  origin: function (origin, callback) {
+    // bypass the requests with no origin (like curl requests, mobile apps, etc )
+    if (!origin) return callback(null, true);
+
+    if (allowedDomains.indexOf(origin) === -1) {
+      var msg = `This site ${origin} does not have an access. Only specific domains are allowed to access it.`;
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
   methods: "GET,HEAD,PUT,POST,DELETE"
-  // origin: 'https://adminpanel.sifylivewire.com:8082/'
+}));
+
+
+// // app.use(cors());
+// app.use(cors({
+//   origin: 'https://admin-tool-gid-workspace.east1.ncloud.netapp.com',
+//   // origin: 'http://localhost:4200',
+//   methods: "GET,HEAD,PUT,POST,DELETE"
+//   // origin: 'https://adminpanel.sifylivewire.com:8082/'
   
-}))
+// }))
 
 
  
