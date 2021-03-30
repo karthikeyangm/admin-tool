@@ -342,7 +342,7 @@ module.exports = {
                 password: data.password
             };
             if (data.superAdmin) {
-                admin.find(query, { password: 0, username: 0 }, function (err, res) {
+                admin.find(query, { password: 0, username: 0,resetToken:0,pwd:0 }, function (err, res) {
                     if (!err) {
                         let result = {
                             success: true,
@@ -365,7 +365,7 @@ module.exports = {
                 //         reject(err)
                 //     }
                 // if (dataValue.length > 0) {
-                db.collection(collectionName).find(query, { password: 0, username: 0 }).toArray(function (err, res) {
+                db.collection(collectionName).find(query, { password: 0, username: 0,resetToken:0,pwd:0 }).toArray(function (err, res) {
                     if (err) {
                         reject(err)
                     }
@@ -373,6 +373,8 @@ module.exports = {
                         if (res.length > 0) {
                             delete res[0]['password'];
                             delete res[0]['username'];
+                            delete res[0]['resetToken'];
+                            delete res[0]['pwd'];
                         }
                         let result = {
                             success: true,

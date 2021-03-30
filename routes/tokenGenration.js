@@ -189,6 +189,8 @@ router.post('/logout', function (req, res) {
     if (refreshToken in refreshTokens) {
       delete refreshTokens[refreshToken];
     }
+    req.session.destroy();
+    res.cookie("connect.sid", "", { expires: new Date() })
     res.sendStatus(204);
   } catch (err) {
     util.writeLog(`${err} -> logout`, 'post:/token/logout');
