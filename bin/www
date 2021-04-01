@@ -61,7 +61,6 @@ function getCapCiphers() {
 }
 
 //var credentials = {key: privateKey, cert: certificate};
-console.log(credentials)
 var server = https.createServer(credentials,app);
 
 
@@ -71,8 +70,7 @@ var server = https.createServer(credentials,app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-console.log( process.env.IP_ADDRESS)
-server.listen(port, process.env.IP_ADDRESS);
+server.listen(port,'0.0.0.0');
 server.on('error', onError);
 server.on('listening', onListening);
 
@@ -83,13 +81,9 @@ var io = require('socket.io').listen(server);
 io.set('transports', ['polling', 'websocket'])
 
 io.use(function (socket, next) {
-  console.log("======socket===")
-  // console.log(socket.handshake)
-  // console.log(socket.handshake.query.token)
   if (socket.handshake.query && socket.handshake.query.token) {
     jwt.verify(socket.handshake.query.token, secretKey.secretKey, function (err, decoded) {
       if (err) {
-        console.log(err)
         return next(new Error('Authentication error'));
       }
       socket.decoded = decoded;
@@ -99,26 +93,19 @@ io.use(function (socket, next) {
     return next(new Error('Authentication error'));
   }
 }).on('connection', (socket) => {
-  console.log("======socket===")
-  //console.log(socket);
-  console.log("Connected to Socket!!" + socket.id);
-
 
   // Receiving Todos from client
   socket.on('addWebGlReportData_server', (Todo) => {
-    console.log('socketData: ' + JSON.stringify(Todo));
     socketmodel.insertDataBasedonWebGl(socket,io, 'reports', Todo)
     // todoController.addTodo(io,Todo);
   });
   // Receiving Updated Todo from client
   socket.on('updateWebGlData', (Todo) => {
-    console.log('socketData: ' + JSON.stringify(Todo));
     // todoController.updateTodo(io,Todo);
   });
 
   // Receiving Todo to Delete
   socket.on('deleteWebGlData', (Todo) => {
-    console.log('socketData: ' + JSON.stringify(Todo));
     // todoController.deleteTodo(io,Todo);
   });
 
@@ -129,37 +116,28 @@ io.use(function (socket, next) {
 
 
  socket.on('setAssestBundle',(socketdata)=>{
-    console.log("socketdata")
-    console.log(socketdata)
     socketmodel.getAssestBundle(socket,io,socketdata)
   })
 
   socket.on('setAssestBundle_type',(socketdata)=>{
-    console.log("socketdata")
-    console.log(socketdata)
     socketmodel.getAssestBundle_type(socket,io,socketdata)
   })
 
   socket.on('setAssestBundle_details',(socketdata)=>{
-    console.log("socketdata")
-    console.log(socketdata)
     socketmodel.setAssestBundle_details(socket,io,socketdata)
   })
 
   // Add enduser app result in db
   socket.on('addEndUserResult', (resultdata) => {
-    console.log(resultdata)
     socketmodel.addEndUserResult(io, 'reports', resultdata)
   });
 
 
   socket.on('setAllAssestList', (assettype) => {
-    console.log(assettype)
     socketmodel.setAllAssestList(io, 'assestdetails', assettype)
   });
 
   socket.on('setCustomAssest', (assetName) => {
-    console.log("setCustomAssest =======" + assetName)
     socketmodel.setCustomAssest(io, 'assestdetails', assetName)
   });
 
