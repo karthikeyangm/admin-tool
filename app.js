@@ -326,5 +326,5 @@ app.get('*', (req, res) => {
   // res.sendFile(path.join(__dirname + '/Netapp/index.html'))
 })
 
-module.exports = app;
-// module.exports = { app: app, server: server };
+// module.exports = app;
+module.exports = { app: app, server: server };

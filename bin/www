@@ -4,18 +4,14 @@
  * Module dependencies.
  */
 
-var app = require('../app');       // Socket added
-// var app = require('../app').app;
+// var app = require('../app');       // Socket added
+var app = require('../app').app;
 // var cluster = require('cluster');
 var debug = require('debug')('express-generator:server');
 var http = require('http');
 var numCPUs = require('os').cpus().length;
-var socketmodel = require('../models/socketModel')
-var secretKey = require("../config/config")
-const { constants } = require('crypto')
-var mongoConn=require("../config/dbConfig")
 
-var jwt = require('jsonwebtoken');
+var mongoConn=require("../config/dbConfig")
 /**
  * Get port from environment and store in Express.
  */
@@ -25,125 +21,41 @@ app.set('port', port);
 
 
 
+// if (cluster.isMaster) {
+//   // Fork workers.
+//   for (var i = 0; i < numCPUs; i++) {
+//     cluster.fork();
+//   }
+
+//   // If a worker dies, log it to the console and start another worker.
+//   cluster.on('exit', function(worker, code, signal) {
+//     console.log('Worker ' + worker.process.pid + ' died.');
+//     cluster.fork();
+//   });
+
+//   // Log when a worker starts listening
+//   cluster.on('listening', function(worker, address) {
+//     console.log('Worker started with PID ' + worker.process.pid + '.');
+//   });
+
+// } else{
+
 
 /**
  * Create HTTP server.
  */
 
-
-var https = require('https');
-var fs = require('fs');
-
-var privateKey  = fs.readFileSync('/opt/app-root/src/bin/ncloud.netapp.com.pem', 'utf8');
-var certificate = fs.readFileSync('/opt/app-root/src/bin/ncloud.netapp.com_12_00_17_F9_BE_76_65_3C_3F_F6_E9_BB_EF_00_01_00_17_F9_BE.pem', 'utf8');
-
-// var privateKey  = fs.readFileSync('/Users/pradep/Desktop/NetApp/NetApp_PWA/Server/bin/key.pem', 'utf8');
-// var certificate = fs.readFileSync('/Users/pradep/Desktop/NetApp/NetApp_PWA/Server/bin/cert.pem', 'utf8');
-
-var credentials = {
-  key: privateKey, cert: certificate,
-  secureOption: constants.SSL_OP_NO_SSLv3 | constants.SSL_OP_NO_TLSv2,
-  ciphers: getCapCiphers().join(':')+ ':!MD5:!aNULL',
-  honorCiphersOrder: true
-};
-
-function getCapCiphers() {
-  return [
-      'ECDHE-RSA-AES128-GCM-SHA256', // TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-      'ECDHE-RSA-AES256-GCM-SHA384', // TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-      'ECDHE-RSA-AES128-SHA256', // TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
-      'ECDHE-RSA-AES256-SHA384', // TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384
-      'AES256-GCM-SHA384', // TLS_RSA_WITH_AES_256_GCM_SHA384
-      'AES256-SHA256', // TLS_RSA_WITH_AES_256_CBC_SHA256
-      'AES128-GCM-SHA256', // TLS_RSA_WITH_AES_128_GCM_SHA256
-      'AES128-SHA256', // TLS_RSA_WITH_AES_128_CBC_SHA256
-  ];
-}
-
-//var credentials = {key: privateKey, cert: certificate};
-var server = https.createServer(credentials,app);
-
-
-// Socket added
-//var server = require('../app').server;  
+// var server = http.createServer(app);         // Socket added
+var server = require('../app').server;  
 
 /**
  * Listen on provided port, on all network interfaces.
  */
+
+// server.listen(port,'127.0.0.1');
 server.listen(port,'0.0.0.0');
 server.on('error', onError);
 server.on('listening', onListening);
-
-const WebSocket = require('ws');
-var io = require('socket.io').listen(server);
-
-
-io.set('transports', ['polling', 'websocket'])
-
-io.use(function (socket, next) {
-  if (socket.handshake.query && socket.handshake.query.token) {
-    jwt.verify(socket.handshake.query.token, secretKey.secretKey, function (err, decoded) {
-      if (err) {
-        return next(new Error('Authentication error'));
-      }
-      socket.decoded = decoded;
-      next();
-    });
-  } else {
-    return next(new Error('Authentication error'));
-  }
-}).on('connection', (socket) => {
-
-  // Receiving Todos from client
-  socket.on('addWebGlReportData_server', (Todo) => {
-    socketmodel.insertDataBasedonWebGl(socket,io, 'reports', Todo)
-    // todoController.addTodo(io,Todo);
-  });
-  // Receiving Updated Todo from client
-  socket.on('updateWebGlData', (Todo) => {
-    // todoController.updateTodo(io,Todo);
-  });
-
-  // Receiving Todo to Delete
-  socket.on('deleteWebGlData', (Todo) => {
-    // todoController.deleteTodo(io,Todo);
-  });
-
-  socket.on('disconnect', function() {
-    console.log('Got disconnect!');
-
- });
-
-
- socket.on('setAssestBundle',(socketdata)=>{
-    socketmodel.getAssestBundle(socket,io,socketdata)
-  })
-
-  socket.on('setAssestBundle_type',(socketdata)=>{
-    socketmodel.getAssestBundle_type(socket,io,socketdata)
-  })
-
-  socket.on('setAssestBundle_details',(socketdata)=>{
-    socketmodel.setAssestBundle_details(socket,io,socketdata)
-  })
-
-  // Add enduser app result in db
-  socket.on('addEndUserResult', (resultdata) => {
-    socketmodel.addEndUserResult(io, 'reports', resultdata)
-  });
-
-
-  socket.on('setAllAssestList', (assettype) => {
-    socketmodel.setAllAssestList(io, 'assestdetails', assettype)
-  });
-
-  socket.on('setCustomAssest', (assetName) => {
-    socketmodel.setCustomAssest(io, 'assestdetails', assetName)
-  });
-
-
-
-})
 
 
 // }
