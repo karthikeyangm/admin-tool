@@ -34,8 +34,8 @@ app.set('port', port);
 var https = require('https');
 var fs = require('fs');
 
-var privateKey  = fs.readFileSync('./ncloud.netapp.com.pem', 'utf8');
-var certificate = fs.readFileSync('./ncloud.netapp.com_12_00_17_F9_BE_76_65_3C_3F_F6_E9_BB_EF_00_01_00_17_F9_BE.pem', 'utf8');
+var privateKey  = fs.readFileSync('/opt/app-root/src/bin/ncloud.netapp.com.pem', 'utf8');
+var certificate = fs.readFileSync('/opt/app-root/src/bin/ncloud.netapp.com_12_00_17_F9_BE_76_65_3C_3F_F6_E9_BB_EF_00_01_00_17_F9_BE.pem', 'utf8');
 
 // var privateKey  = fs.readFileSync('/Users/pradep/Desktop/NetApp/NetApp_PWA/Server/bin/key.pem', 'utf8');
 // var certificate = fs.readFileSync('/Users/pradep/Desktop/NetApp/NetApp_PWA/Server/bin/cert.pem', 'utf8');
