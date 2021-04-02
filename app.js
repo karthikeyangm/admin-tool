@@ -66,20 +66,26 @@ app.use(function (req, res, next) {
   next();
 })
 
-var allowedDomains = ['https://admin-tool-gid-workspace.east1.ncloud.netapp.com', 'http://admin-tool-gid-workspace.east1.ncloud.netapp.com'];
-app.use(cors({
-  origin: function (origin, callback) {
-    // bypass the requests with no origin (like curl requests, mobile apps, etc )
-    if (!origin) return callback(null, true);
 
-    if (allowedDomains.indexOf(origin) === -1) {
-      var msg = `This site ${origin} does not have an access. Only specific domains are allowed to access it.`;
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  methods: "GET,HEAD,PUT,POST,DELETE"
-}));
+app.use(cors({ methods: "GET,PUT,POST,DELETE" }));
+
+// app.use(cors());
+// app.options('*', cors());
+
+// var allowedDomains = ['https://admin-tool-gid-workspace.east1.ncloud.netapp.com', 'http://admin-tool-gid-workspace.east1.ncloud.netapp.com'];
+// app.use(cors({
+//   origin: function (origin, callback) {
+//     // bypass the requests with no origin (like curl requests, mobile apps, etc )
+//     if (!origin) return callback(null, true);
+
+//     if (allowedDomains.indexOf(origin) === -1) {
+//       var msg = `This site ${origin} does not have an access. Only specific domains are allowed to access it.`;
+//       return callback(new Error(msg), false);
+//     }
+//     return callback(null, true);
+//   },
+//   methods: "GET,HEAD,PUT,POST,DELETE"
+// }));
 
 
 // // app.use(cors());
@@ -88,21 +94,22 @@ app.use(cors({
 //   // origin: 'http://localhost:4200',
 //   methods: "GET,HEAD,PUT,POST,DELETE"
 //   // origin: 'https://adminpanel.sifylivewire.com:8082/'
-  
+
 // }))
 
 
- 
+
 
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
-      connectSrc: ["'self'", 'https://admin-tool-gid-workspace.east1.ncloud.netapp.com','http://admin-tool-gid-workspace.east1.ncloud.netapp.com'],
-      frameSrc: ["'self'",'blob:','https:', "'unsafe-inline'","'unsafe-eval'"],
-      childSrc: ["'self'", 'blob:','https:', "'unsafe-inline'","'unsafe-eval'"],
-      objectSrc:["'self'", 'blob:','https:', "'unsafe-inline'","'unsafe-eval'"],
-      scriptSrc: ["'self'", 'blob:','https:', "'unsafe-inline'","'unsafe-eval'"],
+      connectSrc: ["'self'", 'https://admin-tool-gid-workspace.east1.ncloud.netapp.com',
+        'http://admin-tool-gid-workspace.east1.ncloud.netapp.com'],
+      frameSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
+      childSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
+      objectSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
+      scriptSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
       styleSrc: [
         "'self'",
         'https:',
@@ -160,21 +167,27 @@ app.use(session({
   cookie: {
     httpOnly: true,
     secure: true,
-    maxAge:31536000
+    maxAge: 31536000
   },
   resave: true, saveUninitialized: true
 }));
-// app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", '*');
-//   res.header('Access-Control-Allow-Methods', 'POST,GET,PUT,DELETE');
-//   res.header("Access-Control-Allow-Headers",
-//     "Content-Type, Access-Control-Allow-Headers, Accept, Origin, Authorization, X-Requested-With, x-auth-token");
-//   if (req.method === 'OPTIONS') {
-//     res.sendStatus(200);
-//   } else {
-//     next();
-//   }
-// });
+
+app.use(function (req, res, next) {
+  const allowedOrigins = ['https://admin-tool-gid-workspace.east1.ncloud.netapp.com',
+    'http://admin-tool-gid-workspace.east1.ncloud.netapp.com',
+    'wss://admin-tool-gid-workspace.east1.ncloud.netapp.com'];
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+  // res.header("Access-Control-Allow-Origin", '*');
+  res.header('Access-Control-Allow-Methods', 'POST,GET,PUT,DELETE');
+  res.header("Access-Control-Allow-Headers",
+    "Content-Type, Access-Control-Allow-Headers, Accept, Origin, Authorization, X-Requested-With, x-auth-token");
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+
+});
 
 /**
  * socket.io connection
@@ -222,7 +235,6 @@ io.use(function (socket, next) {
     return next(new Error('Authentication error'));
   }
 }).on('connection', (socket) => {
-  console.log(socket)
   // app.use(clientListener());
   // app.use(setclientdb());
   console.log("Connected to Socket!!" + socket.id);
@@ -246,15 +258,15 @@ io.use(function (socket, next) {
   })
 
   // Add enduser app result in db
-  socket.on('addEndUserResult', (resultdata) => { 
+  socket.on('addEndUserResult', (resultdata) => {
     socketmodel.addEndUserResult(io, 'reports', resultdata)
   });
 
-  socket.on('setAllAssestList', (assettype) => { 
+  socket.on('setAllAssestList', (assettype) => {
     socketmodel.setAllAssestList(io, 'assestdetails', assettype)
   });
 
-  socket.on('setCustomAssest', (assetName) => { 
+  socket.on('setCustomAssest', (assetName) => {
     socketmodel.setCustomAssest(io, 'assestdetails', assetName)
   });
 
@@ -273,7 +285,7 @@ app.use('/', require('./routes/index'));
 app.use('/tokenGen', tokenGen);
 app.use('/writeJson', writeJson);
 app.use('/scenarioUserVerify', scenarioUserVerify);
-app.use('/users', auth,limiter, usersRouter);
+app.use('/users', auth, limiter, usersRouter);
 app.use('/scenario', auth, Scenario)
 app.use('/grouping', auth, grouping)
 app.use('/urlShortner', urlShortner)
@@ -284,7 +296,7 @@ app.use('/tenant', auth, tenant)
 app.use('/dashboard', auth, dashboard)
 app.use('/uploadImg', auth, upload)
 app.use('/report', report)
-app.use('/register',limiter, register)
+app.use('/register', limiter, register)
 app.use('/forgotPwd', forgotPwd)
 app.use(auth, express.static(__dirname + '/uploads/assets'))
 // app.use( express.static(__dirname + '/uploads/pdf/'))
@@ -299,7 +311,7 @@ app.use(auth, express.static(__dirname + '/uploads/assets'))
 // });
 
 
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
   res.status(404).send('Unable to find the requested resource!')
 });
 /**
