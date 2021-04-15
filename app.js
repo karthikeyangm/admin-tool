@@ -1,9 +1,9 @@
 
 var express = require('express');
-const helmet = require("helmet")
+// const helmet = require("helmet")
 const rateLimit = require("express-rate-limit");
 var app = express();
-app.use(helmet());
+// app.use(helmet());
 var session = require('express-session')
 var createError = require('http-errors');
 var sharedsession = require("express-socket.io-session");
@@ -67,10 +67,10 @@ app.use(function (req, res, next) {
 })
 
 
-app.use(cors({ methods: "GET,PUT,POST,DELETE" }));
+// app.use(cors({ methods: "GET,PUT,POST,DELETE" }));
 
-// app.use(cors());
-// app.options('*', cors());
+app.use(cors());
+app.options('*', cors());
 
 // var allowedDomains = ['https://admin-tool-gid-workspace.east1.ncloud.netapp.com', 'http://admin-tool-gid-workspace.east1.ncloud.netapp.com'];
 // app.use(cors({
@@ -100,26 +100,26 @@ app.use(cors({ methods: "GET,PUT,POST,DELETE" }));
 
 
 
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      connectSrc: ["'self'", 'https://admin-tool-gid-workspace.east1.ncloud.netapp.com',
-        'http://admin-tool-gid-workspace.east1.ncloud.netapp.com'],
-      frameSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
-      childSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
-      objectSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
-      scriptSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
-      styleSrc: [
-        "'self'",
-        'https:',
-        "'unsafe-inline'"],
-      fontSrc: ["'self'", 'https:', 'data:'],
-      imgSrc: ["'self'", 'data:'],
-      baseUri: ["'self'"],
-    },
-  })
-)
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: ["'self'"],
+//       connectSrc: ["'self'", 'https://admin-tool-gid-workspace.east1.ncloud.netapp.com',
+//         'http://admin-tool-gid-workspace.east1.ncloud.netapp.com'],
+//       frameSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
+//       childSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
+//       objectSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
+//       scriptSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
+//       styleSrc: [
+//         "'self'",
+//         'https:',
+//         "'unsafe-inline'"],
+//       fontSrc: ["'self'", 'https:', 'data:'],
+//       imgSrc: ["'self'", 'data:'],
+//       baseUri: ["'self'"],
+//     },
+//   })
+// )
 
 // app.use(
 //   helmet.contentSecurityPolicy({
@@ -173,21 +173,33 @@ app.use(session({
 }));
 
 app.use(function (req, res, next) {
-  const allowedOrigins = ['https://admin-tool-gid-workspace.east1.ncloud.netapp.com',
-    'http://admin-tool-gid-workspace.east1.ncloud.netapp.com',
-    'wss://admin-tool-gid-workspace.east1.ncloud.netapp.com'];
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-  }
-  // res.header("Access-Control-Allow-Origin", '*');
+  res.header("Access-Control-Allow-Origin", '*');
   res.header('Access-Control-Allow-Methods', 'POST,GET,PUT,DELETE');
   res.header("Access-Control-Allow-Headers",
     "Content-Type, Access-Control-Allow-Headers, Accept, Origin, Authorization, X-Requested-With, x-auth-token");
-  res.header('Access-Control-Allow-Credentials', true);
-  next();
-
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
 });
+
+// app.use(function (req, res, next) {
+//   const allowedOrigins = ['https://admin-tool-gid-workspace.east1.ncloud.netapp.com',
+//     'http://admin-tool-gid-workspace.east1.ncloud.netapp.com',
+//     'wss://admin-tool-gid-workspace.east1.ncloud.netapp.com'];
+//   const origin = req.headers.origin;
+//   if (allowedOrigins.includes(origin)) {
+//     res.header('Access-Control-Allow-Origin', origin);
+//   }
+//   // res.header("Access-Control-Allow-Origin", '*');
+//   res.header('Access-Control-Allow-Methods', 'POST,GET,PUT,DELETE');
+//   res.header("Access-Control-Allow-Headers",
+//     "Content-Type, Access-Control-Allow-Headers, Accept, Origin, Authorization, X-Requested-With, x-auth-token");
+//   res.header('Access-Control-Allow-Credentials', true);
+//   next();
+
+// });
 
 /**
  * socket.io connection
