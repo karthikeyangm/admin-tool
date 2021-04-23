@@ -189,7 +189,11 @@ app.use(session({
 app.use(function (req, res, next) {
   const allowedOrigins = ['https://admin-tool-gid-workspace.east1.ncloud.netapp.com',
     'http://admin-tool-gid-workspace.east1.ncloud.netapp.com',
-    'wss://admin-tool-gid-workspace.east1.ncloud.netapp.com'];
+    'wss://admin-tool-gid-workspace.east1.ncloud.netapp.com',
+    'http://admin-tool-gid-hwsim3d-stg.npc-us-west-dc61.ncloud.netapp.com',
+    'https://admin-tool-gid-hwsim3d-stg.npc-us-west-dc61.ncloud.netapp.com',
+    'wss://admin-tool-gid-hwsim3d-stg.npc-us-west-dc61.ncloud.netapp.com'  
+  ];
   const origin = req.headers.origin;
   if (allowedOrigins.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
