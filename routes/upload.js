@@ -261,7 +261,7 @@ router.get('/getbundelData', (req, res) => {
         } else {
             valueData = req.query.id
         }
-        db.collection('assestdetails').find({ _id: ObjectID(valueData) }).toArray((err, resdata) => {
+        db.collection('assestdetails').find({ _id: ObjectID(valueData) }).toArray(async (err, resdata) => {
             try {
                 if (err) {  res.send(err)
                 }
@@ -370,6 +370,7 @@ router.get('/getmanifestData', (req, res) => {
 })
 
 router.get('/getmanifestData/:id', (req, res) => {
+    
     let db = global.db;
     try {
         db.collection('assestdetails').find({ _id: ObjectID(req.params.id) }).toArray((err, resdata) => {
@@ -387,6 +388,7 @@ router.get('/getmanifestData/:id', (req, res) => {
                     res.sendFile(p);
                 }
             } catch (err) {
+                console.log(err)
                 util.writeLog(`${err} -> getmanifestData`, 'get:/uploadImg//getmanifestData/:id--data');
                 var error = new Error();
                 error.success = false;
@@ -405,6 +407,41 @@ router.get('/getmanifestData/:id', (req, res) => {
     }
 })
 
+router.get('/getCableTypeData/:id', (req, res) => {
+    let db = global.db;
+    try {
+        db.collection('assestdetails').find({ _id: ObjectID(req.params.id) }).toArray((err, resdata) => {
+            try {
+                if (err) {  res.send(err)
+                }
+                var decipher = crypto.createDecipher(process.env.cryptoalgorithm, process.env.cryptokey);
+                let decrypted = JSON.parse(decipher.update(resdata[0].asset_encrypt, 'hex', 'utf8') + decipher.final('utf8'));
+                var vSplitData = (decrypted[0].cabel_name_diff_head_path).split(process.env.baseUrl);
+                if (os.type() == 'Windows_NT') {
+                    let p = path.join(__dirname, `../${vSplitData[1]}`);
+                    res.sendFile(p);
+                } else {
+                    let p = path.join(__dirname, `../uploads/assets/${vSplitData[1]}`);
+                    res.sendFile(p);
+                }
+            } catch (err) {
+                util.writeLog(`${err} -> getcabelData`, 'get:/uploadImg/cableTypeImagePath/:id-data');
+                var error = new Error();
+                error.success = false;
+                error.status = 404;
+                error.message = 'An internal error occurred. Please try again later';
+                res.send(error);
+            }
+        });
+    } catch (err) {
+        util.writeLog(`${err} -> getcabelData`, 'get:/uploadImg//getcabelData/:id');
+        var error = new Error();
+        error.success = false;
+        error.status = 404;
+        error.message = 'An internal error occurred. Please try again later';
+        res.send(error);
+    }
+})
 
 
 router.get('/getcabelData/:id', (req, res) => {

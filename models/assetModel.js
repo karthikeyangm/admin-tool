@@ -103,14 +103,17 @@ module.exports = {
                                 asset_encrypt: encrypted
                             }
                             if (data.cabel_name != null) {
-                                updateData = {
-                                    asset_Thumpnail_encrypt: process.env.baseUrl + 'uploadImg/getthumbnailData/' + dataval.ops[0]._id,
-                                    asset_bundel_encrypt: process.env.baseUrl + 'uploadImg/getbundelData/' + dataval.ops[0]._id,
-                                    asset_manifest_encrypt: process.env.baseUrl + 'uploadImg/getmanifestData/' + dataval.ops[0]._id,
-                                    asset_cabel_encrypt: process.env.baseUrl + 'uploadImg/getcabelData/' + dataval.ops[0]._id,
-                                    asset_encrypt: encrypted
-                                }
+                                updateData.asset_cabel_encrypt = process.env.baseUrl + 'uploadImg/getcabelData/' + dataval.ops[0]._id
+                                
                             }
+                            if(data.cabel_name_diff_head != null){
+                               // updateData.cable_type = "Two Way";
+                                updateData.asset_cable_type_encrypt = process.env.baseUrl + 'uploadImg/getCableTypeData/' + dataval.ops[0]._id;
+                            }
+                            //else{
+                               // updateData.cable_type = "";
+                                //updateData.asset_cable_type_encrypt = null;
+                           // }
                             db.collection(collectionName).updateMany({ _id: ObjectID(dataval.ops[0]._id) }, {
                                 $set: updateData
                             }, {
@@ -194,13 +197,15 @@ module.exports = {
                                 asset_encrypt: encrypted
                             }
                             if (data.cabel_name != null) {
-                                updateData = {
-                                    asset_Thumpnail_encrypt: process.env.baseUrl + 'uploadImg/getthumbnailData/' + id,
-                                    asset_bundel_encrypt: process.env.baseUrl + 'uploadImg/getbundelData/' + id,
-                                    asset_manifest_encrypt: process.env.baseUrl + 'uploadImg/getmanifestData/' + id,
-                                    asset_cabel_encrypt: process.env.baseUrl + 'uploadImg/getcabelData/' + id,
-                                    asset_encrypt: encrypted
-                                }
+                                updateData.asset_cabel_encrypt = process.env.baseUrl + 'uploadImg/getcabelData/' + id
+                            }
+
+                            if (data.cabel_name_diff_head != null) {
+                              //  updateData.cable_type = "Two Way";
+                                updateData.asset_cable_type_encrypt = process.env.baseUrl + 'uploadImg/getCableTypeData/' + id
+                            }else{
+                               // updateData.cable_type = "One Way";
+                                updateData.asset_cable_type_encrypt = null;
                             }
                             db.collection(collectionName).updateMany({ _id: ObjectID(id) }, {
                                 $set: updateData

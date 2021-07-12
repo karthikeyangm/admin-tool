@@ -147,7 +147,11 @@ exports.setAssestBundle_details = (socket, io, data) => {
           cablePath: res[0].cablePath,
           manifest_name: res[0].manifest_name,
           asset_bundel_encrypt: res[0].asset_bundel_encrypt,
-          asset_manifest_encrypt: res[0].asset_manifest_encrypt
+          asset_manifest_encrypt: res[0].asset_manifest_encrypt,
+          cable_type: res[0].cable_type,
+          cabel_name_diff_head : res[0].cabel_name_diff_head,
+          cabel_name_diff_head_path : res[0].cabel_name_diff_head_path,
+          // asset_cable_type_encrypt : null
         }]
       }
       socket.emit('getAssestBundle_details', result);
@@ -284,6 +288,8 @@ exports.setAllAssestList = (io, collectionName, data1) => {
         _id: 1, title: 1, type: 1,
         InventoryItemKeyName: 1, ViewMode: 1, ModelDetails: 1,
         asset_manifest_encrypt: 1, asset_bundel_encrypt: 1, asset_cabel_encrypt: 1, asset_Thumpnail_encrypt: 1,
+        cable_type: 1,
+        asset_cable_type_encrypt: 1
         // thumbnailImgPath:1,bundlePath:1,manifestPath:1,cablePath:1
       }
     }).toArray((err, data) => {
@@ -315,7 +321,9 @@ exports.setCustomAssest = (io, collectionName, data1) => {
       projection: {
         _id: 1, title: 1, type: 1, asset_Thumpnail_encrypt: 1,
         InventoryItemKeyName: 1, ViewMode: 1, ModelDetails: 1,
-        asset_manifest_encrypt: 1, asset_bundel_encrypt: 1, asset_cabel_encrypt: 1
+        asset_manifest_encrypt: 1, asset_bundel_encrypt: 1, asset_cabel_encrypt: 1,
+        cable_type: 1,
+        asset_cable_type_encrypt: 1
       }
     }).toArray((err, data) => {
       var result;

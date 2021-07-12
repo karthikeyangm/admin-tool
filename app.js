@@ -107,7 +107,7 @@ app.use(
     directives: {
       defaultSrc: ["'self'"],
       connectSrc: ["'self'", 'http://admin-tool-gid-hwsim3d-stg.npc-us-west-dc61.ncloud.netapp.com',
-        'https://admin-tool-gid-hwsim3d-stg.npc-us-west-dc61.ncloud.netapp.com'],
+        'https://admin-tool-gid-hwsim3d-stg.npc-us-west-dc61.ncloud.netapp.com', 'http://admin-tool-gid-workspace.east1.ncloud.netapp.com', 'https://admin-tool-gid-workspace.east1.ncloud.netapp.com'],
       frameSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
       childSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
       objectSrc: ["'self'", 'blob:', 'https:', "'unsafe-inline'", "'unsafe-eval'"],
