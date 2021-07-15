@@ -1,0 +1,17 @@
+{
+"companyName": "SifyTechnologies",
+"productName": "AssetViewer",
+"productVersion": "1.0",
+"dataUrl": "7a9f706bb206b9c83f094e55f5766e6b.unityweb",
+"wasmCodeUrl": "7e915e336dbd803412ca48c823e022f2.unityweb",
+"wasmFrameworkUrl": "e6d9956b1745dbbe5e4a83d938371fce.unityweb",
+"wasmSymbolsUrl": "97d3fb6b295525c8ba49772ac43a24ba.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.3f1"
+}
